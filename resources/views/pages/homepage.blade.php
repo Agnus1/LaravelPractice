@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    <main class="flex-1 container mx-auto bg-white">
         <section class="bg-white">
             <div data-slick-carousel>
                 <div class="relative banner">
@@ -142,5 +141,4 @@
                 </div>
             </div>
         </section>
-    </main>
 @endsection
