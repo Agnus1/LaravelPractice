@@ -47,17 +47,13 @@
             <p class="text-3xl text-black font-bold mb-4">Информация</p>
             <nav>
                 <ul class="list-inside  bullet-list-item">
-                    <li><a class="text-gray-600 hover:text-orange" href="inner.html">О компании</a></li>
-                    <li><a class="text-orange cursor-default"      href="inner.html">Контактная информация</a></li>
-                    <li><a class="text-gray-600 hover:text-orange" href="inner.html">Условия продаж</a></li>
-                    <li><a class="text-gray-600 hover:text-orange" href="inner.html">Финансовый отдел</a></li>
-                    <li><a class="text-gray-600 hover:text-orange" href="inner.html">Для клиентов</a></li>
+                    @foreach(getFooterMenu() as $key)
+                    <li><a class="hover:text-orange" href="{{route('inner')}}">{{$key}}</a></li>
+                    @endforeach
                 </ul>
             </nav>
         </div>
     </section>
-
-
     <div class="space-y-4 sm:space-y-0 sm:flex sm:justify-between items-center py-6 px-2 sm:px-0">
         <div class="copy pr-8">© 2021 Рога &amp; Сила. Продажа автомобилей.</div>
         <div class="text-right">
