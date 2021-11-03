@@ -1,4 +1,4 @@
-<title>Рога и Сила - Главная страница</title>
+<title>Рога и Сила - @yield('title')</title>
 <link href="assets/favicon.ico" rel="shortcut icon" type="image/x-icon">
 <header class="bg-white">
     <div class="border-b">

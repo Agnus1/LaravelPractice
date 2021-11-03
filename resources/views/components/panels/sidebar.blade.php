@@ -4,11 +4,9 @@
             <li>
                 <p class="text-xl text-black font-bold mb-4">Информация</p>
                 <ul class="space-y-2">
-                    <li><a class="hover:text-orange" href="{{route('inner')}}">О компании</a></li>
-                    <li><a class="text-orange cursor-default" href="{{route('inner')}}">Контактная информация</a></li>
-                    <li><a class="hover:text-orange" href="{{route('inner')}}">Условия продаж</a></li>
-                    <li><a class="hover:text-orange" href="{{route('inner')}}">Финансовый отдел</a></li>
-                    <li><a class="hover:text-orange" href="{{route('inner')}}">Для клиентов</a></li>
+                    @foreach (getFooterMenu() as $key => $value)
+                    <li><a class="{{request()->routeIs($value) ? 'text-orange cursor-default' : 'hover:text-orange' }}" href="{{route($value)}}">{{$key}}</a></li>
+                    @endforeach
                 </ul>
             </li>
         </ul>
