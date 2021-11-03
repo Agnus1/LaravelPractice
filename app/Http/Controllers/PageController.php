@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PageController extends Controller
 {
@@ -44,6 +45,11 @@ class PageController extends Controller
 
     public function article()
     {
-        return view('pages.article', ['title'=>'Машина']);
+        return view('pages.article', ['title'=>'Статья']);
+    }
+
+    public function news()
+    {
+        return view('pages.news', ['title'=>'Новости']);
     }
 }

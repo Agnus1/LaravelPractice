@@ -11,3 +11,4 @@ Route::get('/financial', [PageController::class, 'financial'])->name('financial'
 Route::get('/forclients', [PageController::class, 'forclients'])->name('forclients');
 Route::get('/salons', [PageController::class, 'salons'])->name('salons');
 Route::get('/article', [PageController::class, 'article'])->name('article');
+Route::get('/news', [PageController::class, 'news'])->name('news');

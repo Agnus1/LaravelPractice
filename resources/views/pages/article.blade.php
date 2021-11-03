@@ -3,7 +3,7 @@
 @section('title', $title)
 
 @section('path')
-<x-panels.navPathArticle/>
+    <x-panels.navPaths.article/>
 @endsection
 
 @section('info')
