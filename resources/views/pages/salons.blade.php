@@ -1,7 +1,6 @@
 @extends('layouts.inner')
-@section('title')
-    {{$title}}
-@endsection
+
+@section('title',$title)
 
 @section('info')
     <div class="col-span-4 sm:col-span-3 lg:col-span-4 p-4">

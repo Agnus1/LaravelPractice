@@ -1,7 +1,6 @@
 @extends('layouts.inner')
-@section('title')
-    {{$title}}
-@endsection
+
+@section('title',$title)
 
 @section('path')
     <x-panels.navPathFoot/>

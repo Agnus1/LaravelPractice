@@ -1,7 +1,7 @@
 @extends('layouts.app')
-@section('title')
-    Главная страница
-@endsection
+
+@section('title','Главная страница')
+
 @section('content')
         <section class="bg-white">
             <div data-slick-carousel>
