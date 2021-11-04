@@ -1,3 +1,4 @@
+@props(['$articles'])
 <section class="news-block-inverse px-6 py-4">
     <div>
         <p class="inline-block text-3xl text-white font-bold mb-4">Новости</p>
@@ -11,17 +12,17 @@
             <div class="px-4 flex flex-col justify-between leading-normal">
                 <div class="mb-8">
                     <div class="text-white font-bold text-xl mb-2">
-                        <a class="hover:text-orange" href="{{route('article')}}">{{$news[0]['title']}}</a>
+                        <a class="hover:text-orange" href="{{route('article')}}">{{$articles[0]->title}}</a>
                     </div>
                     <p class="text-gray-300 text-base">
-                        <a class="hover:text-orange" href="{{route('article')}}">{{$news[0]['description']}}</a>
+                        <a class="hover:text-orange" href="{{route('article')}}">{{$articles[0]->description}}</a>
                     </p>
                 </div>
                 <div>
                     <span class="text-sm text-white italic rounded bg-orange px-2">Киа Seed</span>
                 </div>
                 <div class="flex items-center">
-                    <p class="text-sm text-gray-400 italic">{{(Jenssegers\Date\Date::parse($news[0]['published_at']))->format('d F Y')}}</p>
+                    <p class="text-sm text-gray-400 italic">{{(Jenssegers\Date\Date::parse($articles[0]->published_at))->format('d F Y')}}</p>
                 </div>
             </div>
         </div>
@@ -32,10 +33,10 @@
             <div class="px-4 flex flex-col justify-between leading-normal">
                 <div class="mb-8">
                     <div class="text-white font-bold text-xl mb-2">
-                        <a class="hover:text-orange" href="{{route('article')}}">{{$news[1]['title']}}</a>
+                        <a class="hover:text-orange" href="{{route('article')}}">{{$articles[1]->title}}</a>
                     </div>
                     <p class="text-gray-300 text-base">
-                        <a class="hover:text-orange" href="{{route('article')}}">{{$news[1]['description']}}</a>
+                        <a class="hover:text-orange" href="{{route('article')}}">{{$articles[1]->description}}</a>
                     </p>
                 </div>
                 <div>
@@ -44,7 +45,7 @@
                     <span class="text-sm text-white italic rounded bg-orange px-2">Киа Seed</span>
                 </div>
                 <div class="flex items-center">
-                    <p class="text-sm text-gray-400 italic">{{(Jenssegers\Date\Date::parse($news[1]['published_at']))->format('d F Y')}}</p>
+                    <p class="text-sm text-gray-400 italic">{{(Jenssegers\Date\Date::parse($articles[1]->published_at))->format('d F Y')}}</p>
                 </div>
             </div>
         </div>
@@ -55,10 +56,10 @@
             <div class="px-4 flex flex-col justify-between leading-normal">
                 <div class="mb-8">
                     <div class="text-white font-bold text-xl mb-2">
-                        <a class="hover:text-orange" href="{{route('article')}}">{{$news[2]['title']}}</a>
+                        <a class="hover:text-orange" href="{{route('article')}}">{{$articles[2]->title}}</a>
                     </div>
                     <p class="text-gray-300 text-base">
-                        <a class="hover:text-orange" href="{{route('article')}}">{{$news[2]['description']}}</a>
+                        <a class="hover:text-orange" href="{{route('article')}}">{{$articles[2]->description}}</a>
                     </p>
                 </div>
                 <div>
@@ -66,7 +67,7 @@
                     <span class="text-sm text-white italic rounded bg-orange px-2">Теги</span>
                 </div>
                 <div class="flex items-center">
-                    <p class="text-sm text-gray-400 italic">{{(Jenssegers\Date\Date::parse($news[2]['published_at']))->format('d F Y')}}</p>
+                    <p class="text-sm text-gray-400 italic">{{(Jenssegers\Date\Date::parse($articles[2]->published_at))->format('d F Y')}}</p>
                 </div>
             </div>
         </div>

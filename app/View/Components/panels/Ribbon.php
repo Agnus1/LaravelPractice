@@ -6,7 +6,7 @@ use Illuminate\View\Component;
 
 class Ribbon extends Component
 {
-    public $news;
+    public $articles;
     /**
      * Create a new component instance.
      *
@@ -14,14 +14,14 @@ class Ribbon extends Component
      */
     public function __construct()
     {
-        $news = \App\Models\Article::query()
+        $articles = \App\Models\Article::query()
             ->select(['title', 'description', 'published_at'])
             ->whereNotNull('published_at')
             ->latest('published_at')
             ->limit(3)
             ->get();
 
-        $this->news = $news;
+        $this->articles = $articles;
     }
 
     /**
@@ -31,6 +31,6 @@ class Ribbon extends Component
      */
     public function render()
     {
-        return view('components.panels.ribbon', ['news' => $this->news]);
+        return view('components.panels.ribbon');
     }
 }
