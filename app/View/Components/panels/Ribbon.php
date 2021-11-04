@@ -4,9 +4,8 @@ namespace App\View\Components\panels;
 
 use Illuminate\View\Component;
 
-class newsSection extends Component
+class Ribbon extends Component
 {
-
     public $news;
     /**
      * Create a new component instance.
@@ -30,6 +29,6 @@ class newsSection extends Component
      */
     public function render()
     {
-        return view('components.panels.news-section', ['news' => $this->news]);
+        return view('components.panels.ribbon', ['news' => $this->news]);
     }
 }

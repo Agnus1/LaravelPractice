@@ -45,5 +45,5 @@
             </div>
         </div>
     </section>
-    <x-panels.news-section/>
+    <x-panels.ribbon/>
 @endsection
