@@ -20,7 +20,7 @@ class CreateArticleTable extends Migration
             $table->string('title')->nullable(false);
             $table->string('description',255)->nullable(false);
             $table->text('body')->nullable(false);
-            $table->date('published_at')->nullable(false);
+            $table->date('published_at')->nullable(true);
         });
     }
 

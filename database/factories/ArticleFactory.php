@@ -18,7 +18,7 @@ class ArticleFactory extends Factory
             'title' => $this->faker->realText(75),
             'description' => $this->faker->realText(140),
             'body' => $this->faker->realText(1000),
-            'published_at' => $this->faker->dateTimeThisMonth('now')
+            'published_at' => (rand(0, 1) ? $this->faker->dateTimeThisMonth('now') :  NULL)
         ];
     }
 }

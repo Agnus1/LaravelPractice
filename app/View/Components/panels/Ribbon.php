@@ -15,10 +15,12 @@ class Ribbon extends Component
     public function __construct()
     {
         $news = \App\Models\Article::query()
-            ->limit(3)
             ->select(['title', 'description', 'published_at'])
+            ->whereNotNull('published_at')
             ->latest('published_at')
+            ->limit(3)
             ->get();
+
         $this->news = $news;
     }
 
