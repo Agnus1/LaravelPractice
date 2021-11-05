@@ -13,7 +13,7 @@ class CreateArticleTable extends Migration
      */
     public function up()
     {
-        Schema::create('articles', function (Blueprint $table) {
+        Schema::create('ribbon', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->string('slug')->nullable(false)->unique();
@@ -31,6 +31,6 @@ class CreateArticleTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('articles');
+        Schema::dropIfExists('ribbon');
     }
 }
