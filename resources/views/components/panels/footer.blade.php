@@ -45,13 +45,7 @@
         </div>
         <div class="mt-8 border-t sm:border-t-0 sm:mt-0 sm:border-l py-2 sm:pl-4 sm:pr-8">
             <p class="text-3xl text-black font-bold mb-4">Информация</p>
-            <nav>
-                <ul class="list-inside  bullet-list-item">
-                    @foreach(getFooterMenu() as $key => $value)
-                    <li><a class="{{request()->routeIs($value) ? 'text-orange cursor-default' : 'text-gray-600 hover:text-orange' }}"  href="{{route($value)}}">{{$key}}</a></li>
-                    @endforeach
-                </ul>
-            </nav>
+            <x-panels.footerMenu/>
         </div>
     </section>
     <div class="space-y-4 sm:space-y-0 sm:flex sm:justify-between items-center py-6 px-2 sm:px-0">
