@@ -3,7 +3,7 @@
 @section('title', 'Условия продаж')
 
 @section('path')
-    <x-panels.navPaths.foot/>
+    <x-panels.navigation.paths.foot/>
 @endsection
 
 @section('info')

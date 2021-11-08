@@ -3,7 +3,7 @@
 @section('title', 'Статья')
 
 @section('path')
-    <x-panels.navPaths.article/>
+    <x-panels.navigation.paths.article/>
 @endsection
 
 @section('info')

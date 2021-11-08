@@ -45,7 +45,7 @@
         </div>
         <div class="mt-8 border-t sm:border-t-0 sm:mt-0 sm:border-l py-2 sm:pl-4 sm:pr-8">
             <p class="text-3xl text-black font-bold mb-4">Информация</p>
-            <x-panels.footerMenu/>
+            <x-panels.navigation.footerMenu/>
         </div>
     </section>
     <div class="space-y-4 sm:space-y-0 sm:flex sm:justify-between items-center py-6 px-2 sm:px-0">

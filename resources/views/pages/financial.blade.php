@@ -3,7 +3,7 @@
 @section('title', 'Финансовый отдел')
 
 @section('path')
-    <x-panels.navPaths.foot/>
+    <x-panels.navigation.paths.foot/>
 @endsection
 
 @section('info')
