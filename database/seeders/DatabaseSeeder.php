@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Eloquent\Factories\Sequence;
+use \Faker\Factory;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +15,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Article::factory()->count(10)->create();
+        \App\Models\Article::factory()
+            ->count(10)
+            ->state(new Sequence(
+                function ($sequence) {
+                    if ($sequence->index < 5) {
+                        return ['published_at' => Factory::create()->dateTimeThisMonth()];
+                    }
+                    return [];
+                }
+            ))
+            ->create();
     }
 }

@@ -1,3 +1,4 @@
+@props(['articles'])
 <section class="news-block-inverse px-6 py-4">
     <div>
         <p class="inline-block text-3xl text-white font-bold mb-4">Новости</p>

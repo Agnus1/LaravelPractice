@@ -45,5 +45,5 @@
             </div>
         </div>
     </section>
-    <x-panels.ribbon/>
+    <x-panels.ribbon :articles="$articles"/>
 @endsection

@@ -3,53 +3,48 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class PageController extends Controller
 {
-    public function home()
-    {
-        return view('pages.homepage');
-    }
-
     public function about()
     {
-        return view('pages.about', ['title'=>'О нас']);
+        return view('pages.about');
     }
 
     public function contactinfo()
     {
-        return view('pages.about', ['title'=>'Контактная информация']);
+        return view('pages.contactinfo');
     }
 
     public function conditions()
     {
-        return view('pages.about', ['title'=>'Условия продаж']);
+        return view('pages.conditions');
     }
 
     public function financial()
     {
-        return view('pages.about', ['title'=>'Финансовый отдел']);
+        return view('pages.financial');
     }
 
     public function forclients()
     {
-        return view('pages.about', ['title'=>'Для клиентов']);
+        return view('pages.forclients');
     }
 
     public function salons()
     {
-        return view('pages.salons', ['title'=>'Салоны']);
+        return view('pages.salons');
     }
 
     public function article()
     {
-        return view('pages.article', ['title'=>'Статья']);
+        return view('pages.article');
     }
 
     public function news()
     {
-        return view('pages.news', ['title'=>'Новости']);
+        return view('pages.news');
     }
 }

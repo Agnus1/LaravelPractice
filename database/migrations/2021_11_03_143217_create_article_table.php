@@ -13,7 +13,7 @@ class CreateArticleTable extends Migration
      */
     public function up()
     {
-        Schema::create('ribbon', function (Blueprint $table) {
+        Schema::create('articles', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->string('slug')->nullable(false)->unique();

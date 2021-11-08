@@ -1,6 +1,6 @@
 @extends('layouts.inner')
 
-@section('title', 'О нас')
+@section('title', 'Для клиентов')
 
 @section('path')
     <x-panels.navPaths.foot/>

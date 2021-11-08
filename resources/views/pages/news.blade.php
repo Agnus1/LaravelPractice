@@ -1,6 +1,6 @@
 @extends('layouts.inner')
 
-@section('title', $title)
+@section('title', 'Новости')
 
 @section('path')
     <x-panels.navPaths.article/>
