@@ -13,7 +13,7 @@ class ArticlesPageController extends Controller
             ->whereNotNull('published_at')
             ->latest('published_at')
             ->limit(3)
-            ->get();
+            ->get()->toArray();
 
         return view('pages.articles', ['articles' => $articles]);
     }
