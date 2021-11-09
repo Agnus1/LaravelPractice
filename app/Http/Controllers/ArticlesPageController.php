@@ -14,7 +14,6 @@ class ArticlesPageController extends Controller
             ->latest('published_at')
             ->limit(3)
             ->get();
-
         return view('pages.articles', ['articles' => $articles]);
     }
 

@@ -9,6 +9,10 @@ class Article extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'published_at' => 'date: d M Y'
+    ];
+
     public function getRouteKeyName()
     {
         return 'slug';
