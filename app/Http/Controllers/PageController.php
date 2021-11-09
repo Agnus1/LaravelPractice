@@ -43,8 +43,8 @@ class PageController extends Controller
         return view('pages.article');
     }
 
-    public function news()
+    public function articles()
     {
-        return view('pages.news');
+        return view('pages.articles');
     }
 }
