@@ -11,5 +11,5 @@
             <h1 class="text-black text-3xl font-bold mb-4">@yield('title')</h1>
             @yield('info')
         </div>
-        <div/>
+    <div/>
 @endsection
