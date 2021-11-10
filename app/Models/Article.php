@@ -15,6 +15,16 @@ class Article extends Model
         'published_at' => 'date: d M Y'
     ];
 
+    public static function getLatest()
+    {
+        return self::query()
+            ->select(['title', 'description', 'published_at', 'slug'])
+            ->whereNotNull('published_at')
+            ->latest('published_at')
+            ->limit(3)
+            ->get();
+    }
+
     public function getRouteKeyName()
     {
         return 'slug';
