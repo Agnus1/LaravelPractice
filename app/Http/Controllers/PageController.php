@@ -47,4 +47,9 @@ class PageController extends Controller
     {
         return view('pages.create');
     }
+
+    public function articles()
+    {
+        return view('pages.articles');
+    }
 }

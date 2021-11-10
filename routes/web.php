@@ -17,4 +17,3 @@ Route::get('/articles/create', [PageController::class, 'create'])->name('create'
 Route::post('/articles/create', [CreateArticleController::class, 'store']);
 Route::get('/articles/{article}', [ArticlesPageController::class, 'articlesItemDetail'])->name('article');
 Route::get('/articles', [ArticlesPageController::class, 'articles'])->name('articles');
-
