@@ -6,10 +6,10 @@
     <div class="px-4 flex flex-col justify-between leading-normal">
         <div class="mb-8">
             <div class="text-white font-bold text-xl mb-2">
-                <a class="hover:text-orange" href="{{route('article')}}">{{$article['title']}}</a>
+                <a class="hover:text-orange" href="{{route('article')}}">{{$article->title}}</a>
             </div>
             <p class="text-gray-300 text-base">
-                <a class="hover:text-orange" href="{{route('article')}}">{{$article['description']}}</a>
+                <a class="hover:text-orange" href="{{route('article')}}">{{$article->description}}</a>
             </p>
         </div>
         <div>
@@ -17,7 +17,7 @@
             <span class="text-sm text-white italic rounded bg-orange px-2">Теги</span>
         </div>
         <div class="flex items-center">
-            <p class="text-sm text-gray-400 italic">{{$article['published_at']}}</p>
+            <p class="text-sm text-gray-400 italic">{{$article->published_at->format('d M Y')}}</p>
         </div>
     </div>
 </div>

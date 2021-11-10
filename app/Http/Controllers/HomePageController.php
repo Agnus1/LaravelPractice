@@ -13,7 +13,7 @@ class HomePageController extends Controller
             ->whereNotNull('published_at')
             ->latest('published_at')
             ->limit(3)
-            ->get()->toArray();
+            ->get();
 
         return view('pages.homepage', ['articles' => $articles]);
     }
