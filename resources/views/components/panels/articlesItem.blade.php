@@ -6,17 +6,17 @@
     <div class="px-4 leading-normal">
         <div class="mb-8 space-y-2">
             <div class="text-black font-bold text-xl">
-                <a class="hover:text-orange" href="{{route('article')}}">{{$article['title']}}</a>
+                <a class="hover:text-orange" href="{{route('article')}}">{{$article->title}}</a>
             </div>
             <p class="text-gray-600 text-base">
-                <a class="hover:text-orange" href="{{route('article')}}">{{$article['description']}}</a>
+                <a class="hover:text-orange" href="{{route('article')}}">{{$article->description}}</a>
             </p>
             <div>
                 <span class="text-sm text-white italic rounded bg-orange px-2">Это</span>
                 <span class="text-sm text-white italic rounded bg-orange px-2">Теги</span>
             </div>
             <div class="flex items-center">
-                <p class="text-sm text-gray-400 italic">{{$article['published_at']}}</p>
+                <p class="text-sm text-gray-400 italic">{{$article->published_at->format('d M Y')}}</p>
             </div>
         </div>
     </div>

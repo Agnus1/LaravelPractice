@@ -8,12 +8,7 @@ class ArticlesPageController extends Controller
 {
     public function articles()
     {
-        $articles = \App\Models\Article::query()
-            ->select(['title', 'description', 'published_at'])
-            ->whereNotNull('published_at')
-            ->latest('published_at')
-            ->limit(3)
-            ->get()->toArray();
+        $articles = \App\Models\Article::getLatest();
 
         return view('pages.articles', ['articles' => $articles]);
     }
