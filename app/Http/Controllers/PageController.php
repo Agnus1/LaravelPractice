@@ -42,4 +42,10 @@ class PageController extends Controller
     {
         return view('pages.article');
     }
+
+    public function articles()
+    {
+        return view('pages.articles');
+    }
+
 }
