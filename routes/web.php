@@ -13,8 +13,8 @@ Route::get('/conditions', [PageController::class, 'conditions'])->name('conditio
 Route::get('/financial', [PageController::class, 'financial'])->name('financial');
 Route::get('/forclients', [PageController::class, 'forclients'])->name('forclients');
 Route::get('/salons', [PageController::class, 'salons'])->name('salons');
+Route::get('/articles/create', [PageController::class, 'create'])->name('create');
+Route::post('/articles/create', [CreateArticleController::class, 'store']);
 Route::get('/articles/{article}', [ArticlesPageController::class, 'articlesItemDetail'])->name('article');
 Route::get('/articles', [ArticlesPageController::class, 'articles'])->name('articles');
-Route::get('/create', [PageController::class, 'create'])->name('create');
 
-Route::post('/create', [CreateArticleController::class, 'store']);
