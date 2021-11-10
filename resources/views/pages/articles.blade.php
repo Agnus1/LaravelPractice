@@ -7,9 +7,6 @@
 @endsection
 
 @section('info')
-    <div class="col-span-4 sm:col-span-3 lg:col-span-4 p-4">
-        <h1 class="text-black text-3xl font-bold mb-4">Новости</h1>
-
         <div class="space-y-4">
             <div class="w-full flex">
                 <div class="h-48 lg:h-auto w-32 sm:w-60 lg:w-32 xl:w-48 flex-none text-center overflow-hidden">
@@ -102,6 +99,4 @@
                 </nav>
             </div>
         </div>
-    </div>
-    </div>
 @endsection

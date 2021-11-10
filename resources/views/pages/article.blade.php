@@ -7,9 +7,6 @@
 @endsection
 
 @section('info')
-    <div class="col-span-4 sm:col-span-3 lg:col-span-4 p-4">
-        <h1 class="text-black text-3xl font-bold mb-4">Новый Stinger</h1>
-
         <div class="space-y-4">
 
             <img src="assets/pictures/car_new_stinger.png" alt="" title="">
@@ -31,5 +28,4 @@
                 К списку новостей
             </a>
         </div>
-    </div>
 @endsection
