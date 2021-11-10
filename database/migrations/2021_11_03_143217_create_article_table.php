@@ -20,7 +20,7 @@ class CreateArticleTable extends Migration
             $table->string('title');
             $table->string('description',255);
             $table->text('body');
-            $table->date('published_at')->nullable(true);
+            $table->dateTime('published_at')->nullable(true);
         });
     }
 
@@ -31,6 +31,6 @@ class CreateArticleTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ribbon');
+        Schema::dropIfExists('articles');
     }
 }
