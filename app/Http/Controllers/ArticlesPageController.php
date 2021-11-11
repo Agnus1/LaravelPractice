@@ -12,17 +12,39 @@ class ArticlesPageController extends Controller
     public function index()
     {
         $articles = \App\Models\Article::getLatest();
-        return view('pages.articles', ['articles' => $articles]);
+        return view('pages.articles.index', ['articles' => $articles]);
     }
 
     public function show(Article $article)
     {
-        return view('pages.article', ['article' => $article]);
+        return view('pages.articles.show', ['article' => $article]);
+    }
+
+    public function create()
+    {
+        return view('pages.articles.create');
     }
 
     public function store(CreateRequest $request)
     {
         Article::create($request->validated());
-        return redirect('/articles');
+        return redirect()->route('articles.index');
+    }
+
+    public function edit(Article $article)
+    {
+        return view('pages.articles.edit', ['article' => $article]);
+    }
+
+    public function update(Article $article, CreateRequest $request)
+    {
+        $article->update($request->validated());
+        return redirect()->route('articles.show', ['article' => $article]);
+    }
+
+    public function destroy(Article $article)
+    {
+        $article->delete();
+        return redirect()->route('articles.index');
     }
 }
