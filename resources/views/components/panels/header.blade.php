@@ -3,7 +3,7 @@
         <div class="container mx-auto block sm:flex sm:justify-between sm:items-center py-4 px-4 sm:px-0 space-y-4 sm:space-y-0">
             <div class="flex justify-center">
                 <a href="{{route('home')}}" class="inline-block sm:inline hover:opacity-75">
-                    <img src="assets/images/logo.png" width="222" height="30" alt="">
+                    <img src="/assets/images/logo.png" width="222" height="30" alt="">
                 </a>
             </div>
             <div>

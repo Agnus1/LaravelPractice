@@ -12,5 +12,5 @@ Route::get('/conditions', [PageController::class, 'conditions'])->name('conditio
 Route::get('/financial', [PageController::class, 'financial'])->name('financial');
 Route::get('/forclients', [PageController::class, 'forclients'])->name('forclients');
 Route::get('/salons', [PageController::class, 'salons'])->name('salons');
-Route::get('/article', [PageController::class, 'article'])->name('article');
+Route::get('/articles/{article}', [ArticlesPageController::class, 'articlesItemDetail'])->name('article');
 Route::get('/articles', [ArticlesPageController::class, 'articles'])->name('articles');

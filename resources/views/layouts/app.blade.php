@@ -10,6 +10,7 @@
         <title>Рога и Сила - @yield('title')</title>
         <link href="assets/favicon.ico" rel="shortcut icon" type="image/x-icon">
         <x-panels.header/>
+
         <main class="flex-1 container mx-auto bg-white">
             @yield('content')
         </main>
