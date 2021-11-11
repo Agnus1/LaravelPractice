@@ -14,7 +14,7 @@
             <div class="mt-8 max-w-md">
                 <div class="grid grid-cols-1 gap-6">
 
-                    <x-panels.form.createEdit :article="null"/>
+                    <x-panels.form.createEdit article="{{new App\Models\Article()}}"/>
 
                     <div class="block">
                         <x-panels.form.buttonOrange text="Сохранить"/>
