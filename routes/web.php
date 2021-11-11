@@ -14,6 +14,6 @@ Route::get('/financial', [PageController::class, 'financial'])->name('financial'
 Route::get('/forclients', [PageController::class, 'forclients'])->name('forclients');
 Route::get('/salons', [PageController::class, 'salons'])->name('salons');
 Route::get('/articles/create', [PageController::class, 'create'])->name('create');
-Route::post('/articles/create', [CreateArticleController::class, 'store']);
-Route::get('/articles/{article}', [ArticlesPageController::class, 'articlesItemDetail'])->name('article');
-Route::get('/articles', [ArticlesPageController::class, 'articles'])->name('articles');
+Route::post('/articles', [ArticlesPageController::class, 'store']);
+Route::get('/articles/{article}', [ArticlesPageController::class, 'show'])->name('article');
+Route::get('/articles', [ArticlesPageController::class, 'index'])->name('articles');
