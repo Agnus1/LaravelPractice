@@ -9,7 +9,7 @@
         <x-panels.form.errors/>
         <x-panels.form.success text="Статья успешно отредактирована"/>
 
-        <form method="POST" action="{{route('articles.show', $article->slug)}}">
+        <form method="POST" action="{{route('articles.show', $article)}}">
             @csrf
             @method('PATCH')
             <div class="mt-8 max-w-md">
@@ -23,7 +23,7 @@
             </div>
         </form>
 
-        <form method="POST" action="{{route('articles.show', $article->slug)}}">
+        <form method="POST" action="{{route('articles.show', $article)}}">
             @csrf
             @method('DELETE')
             <div class="block mt-3">
