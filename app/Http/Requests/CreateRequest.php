@@ -32,7 +32,7 @@ class CreateRequest extends FormRequest
             'description' => 'required|min:20|max:255',
             'slug' => [
                 'required',
-                Rule::unique('articles', 'slug')->ignore($this->article)
+                Rule::unique('articles')->ignore($this->article, 'slug')
             ],
             'published_at' => 'nullable|date'
         ];
@@ -40,21 +40,20 @@ class CreateRequest extends FormRequest
 
     protected function prepareForValidation()
     {
-
-        if ($this->getMethod() == 'POST') {
-            $slug = Str::slug(request('title') . uniqid());
-        } else {
-            $slug = $this->article->slug;
-        }
-
-        $this->merge([
-            'slug' => $slug,
-        ]);
-
         if (request('is_published')) {
             $this->merge([
                 'published_at' => Carbon::now()
             ]);
         }
+
+        if ($this->article) {
+            $slug = $this->article->slug;
+        } else {
+            $slug = Str::slug(request('title') . uniqid());
+        }
+
+        $this->merge([
+            'slug' => $slug,
+        ]);
     }
 }

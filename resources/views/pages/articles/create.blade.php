@@ -17,8 +17,8 @@
                     <x-panels.form.createEdit article="{{new App\Models\Article()}}"/>
 
                     <div class="block">
-                        <x-panels.form.buttonOrange text="Сохранить"/>
-                        <x-panels.form.buttonGrey text="Отменить"/>
+                        <x-panels.form.buttonOrange text="Сохранить" type="submit"/>
+                        <x-panels.form.buttonGrey text="Отменить" type="reset"/>
                     </div>
 
                 </div>
