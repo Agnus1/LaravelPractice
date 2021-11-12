@@ -20,6 +20,11 @@ class ArticlesPageController extends Controller
         return view('pages.article', ['article' => $article]);
     }
 
+    public function create()
+    {
+        return view('pages.create');
+    }
+
     public function store(CreateRequest $request)
     {
         Article::create($request->validated());
