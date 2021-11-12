@@ -28,6 +28,6 @@ class ArticlesPageController extends Controller
     public function store(CreateRequest $request)
     {
         Article::create($request->validated());
-        return redirect('/articles');
+        return redirect()->route('articles');
     }
 }
