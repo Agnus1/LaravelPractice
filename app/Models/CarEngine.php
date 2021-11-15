@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class CarEngine extends Model
 {
     use HasFactory;
+
+    public function car()
+    {
+        return $this->hasOne(Car::class);
+    }
 }

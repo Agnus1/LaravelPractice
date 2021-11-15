@@ -12,16 +12,16 @@ class Car extends Model
 
     public function carClass()
     {
-        return $this->hasOne(CarClass::class, 'car_class_id');
+        return $this->belongsTo(CarClass::class);
     }
 
     public function carBody()
     {
-        return $this->hasOne(CarBody::class, 'car_body_id');
+        return $this->belongsTo(CarBody::class);
     }
 
     public function carEngine()
     {
-        return $this->hasOne(CarEngine::class, 'car_engine_id');
+        return $this->belongsTo(CarEngine::class);
     }
 }

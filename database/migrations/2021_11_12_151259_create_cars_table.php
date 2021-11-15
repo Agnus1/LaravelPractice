@@ -18,16 +18,17 @@ class CreateCarsTable extends Migration
             $table->string('name', 25)->unique();
             $table->text('body');
             $table->unsignedBigInteger('price');
-            $table->unsignedBigInteger('old_price');
+            $table->unsignedBigInteger('old_price')->nullable(true);
             $table->string('salon', 50);
-            $table->unsignedInteger('car_class_id');
+            $table->foreignId('car_class_id')->constrained();
             $table->string('kpp', 50);
             $table->unsignedInteger('year');
             $table->string('color', 50);
-            $table->unsignedInteger('car_body_id');
-            $table->unsignedInteger('car_engine_id');
+            $table->foreignId('car_body_id')->constrained();
+            $table->foreignId('car_engine_id')->constrained();
             $table->boolean('is_new')->default(false);
             $table->timestamps();
+
         });
     }
 
