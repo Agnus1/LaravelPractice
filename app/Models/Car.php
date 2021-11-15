@@ -9,6 +9,11 @@ class Car extends Model
 {
     use HasFactory;
 
+    public $guarded = [];
+
+    protected $casts = [
+        'year' => 'date: d M Y'
+    ];
 
     public function carClass()
     {

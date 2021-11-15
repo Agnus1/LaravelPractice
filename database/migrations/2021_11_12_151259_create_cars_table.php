@@ -20,15 +20,14 @@ class CreateCarsTable extends Migration
             $table->unsignedBigInteger('price');
             $table->unsignedBigInteger('old_price')->nullable(true);
             $table->string('salon', 50);
-            $table->foreignId('car_class_id')->constrained();
-            $table->string('kpp', 50);
-            $table->unsignedInteger('year');
-            $table->string('color', 50);
-            $table->foreignId('car_body_id')->constrained();
-            $table->foreignId('car_engine_id')->constrained();
+            $table->foreignId('car_class_id')->nullable(true)->constrained();
+            $table->string('kpp', 50)->nullable(true);
+            $table->dateTime('year');
+            $table->string('color', 50)->nullable(true);
+            $table->foreignId('car_body_id')->nullable(true)->constrained();
+            $table->foreignId('car_engine_id')->nullable(true)->constrained();
             $table->boolean('is_new')->default(false);
             $table->timestamps();
-
         });
     }
 

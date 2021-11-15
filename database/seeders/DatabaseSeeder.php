@@ -2,9 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\CarClass;
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Eloquent\Factories\Sequence;
 use \Faker\Factory;
 
 class DatabaseSeeder extends Seeder
@@ -19,7 +17,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             ArticlesSeeder::class,
-            CarPartsSeeder::class,
+            CarsSeeder::class,
         ]);
     }
 }

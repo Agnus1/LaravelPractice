@@ -20,7 +20,7 @@ class CarFactory extends Factory
             'name' => $this->faker->unique()->word,
             'body' => $this->faker->realText,
             'price' => $this->faker->numberBetween(500000, 1000000),
-            'salon' => $this->faker->realText,
+            'salon' => $this->faker->word,
             'car_class_id' => CarClass::factory(),
             'kpp' => $this->faker->word,
             'year' => $this->faker->dateTimeThisCentury,
