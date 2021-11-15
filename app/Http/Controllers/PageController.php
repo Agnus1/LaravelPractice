@@ -37,15 +37,4 @@ class PageController extends Controller
     {
         return view('pages.salons');
     }
-
-    public function article()
-    {
-        return view('pages.article');
-    }
-
-    public function articles()
-    {
-        return view('pages.articles');
-    }
-
 }

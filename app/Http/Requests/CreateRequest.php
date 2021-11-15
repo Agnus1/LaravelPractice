@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class CreateRequest extends FormRequest
 {
@@ -26,23 +27,33 @@ class CreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|min:3|max:60',
-            'body' => 'required|min:60',
-            'description' => 'required|min:20|max:255',
-            'slug' => 'required|unique:articles,slug',
+            'title' => 'required|min:3|max:150|not_regex:/".*/i',
+            'body' => 'required|min:60|not_regex:/".*/i',
+            'description' => 'required|min:20|max:255|not_regex:/".*/i',
+            'slug' => [
+                'required',
+                Rule::unique('articles')->ignore($this->article, 'slug')
+            ],
             'published_at' => 'nullable|date'
         ];
     }
 
     protected function prepareForValidation()
     {
-        $this->merge([
-            'slug' => Str::slug(request('title') . uniqid()),
-        ]);
         if (request('is_published')) {
             $this->merge([
                 'published_at' => Carbon::now()
             ]);
         }
+
+        if ($this->article) {
+            $slug = $this->article->slug;
+        } else {
+            $slug = Str::slug(request('title') . uniqid());
+        }
+
+        $this->merge([
+            'slug' => $slug,
+        ]);
     }
 }

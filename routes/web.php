@@ -13,7 +13,6 @@ Route::get('/conditions', [PageController::class, 'conditions'])->name('conditio
 Route::get('/financial', [PageController::class, 'financial'])->name('financial');
 Route::get('/forclients', [PageController::class, 'forclients'])->name('forclients');
 Route::get('/salons', [PageController::class, 'salons'])->name('salons');
-Route::get('/articles/create', [ArticlesPageController::class, 'create'])->name('create');
-Route::post('/articles', [ArticlesPageController::class, 'store']);
-Route::get('/articles/{article}', [ArticlesPageController::class, 'show'])->name('article');
-Route::get('/articles', [ArticlesPageController::class, 'index'])->name('articles');
+
+Route::resource('/articles', ArticlesPageController::class);
+
