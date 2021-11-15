@@ -27,9 +27,9 @@ class CreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|min:3|max:150',
-            'body' => 'required|min:60',
-            'description' => 'required|min:20|max:255',
+            'title' => 'required|min:3|max:150|not_regex:/".*/i',
+            'body' => 'required|min:60|not_regex:/".*/i',
+            'description' => 'required|min:20|max:255|not_regex:/".*/i',
             'slug' => [
                 'required',
                 Rule::unique('articles')->ignore($this->article, 'slug')
