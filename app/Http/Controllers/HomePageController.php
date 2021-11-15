@@ -18,6 +18,7 @@ class HomePageController extends Controller
             ->where('is_new', '>', '0')
             ->limit(4)
             ->get();;
+
         return view('pages.homepage', ['articles' => $articles, 'cars' => $cars]);
     }
 }

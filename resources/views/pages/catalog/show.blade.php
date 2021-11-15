@@ -23,7 +23,9 @@
             <div class="col-span-1 lg:col-span-2">
                 <div class="space-y-4 w-full">
                     <div class="block px-4">
-                        <p class="text-base line-through text-gray-400">{{$car->old_price ? number_format($car->old_price, 0, '', ' ') . '₽' : ''}}</p>
+                        @if ($car->old_price)
+                        <p class="text-base line-through text-gray-400">{{number_format($car->old_price, 0, '', ' ')}} ₽</p>
+                        @endif
                         <p class="font-bold text-2xl text-orange">{{number_format($car->price, 0, '', ' ')}} ₽</p>
                         <div class="mt-4 block">
                             <form>

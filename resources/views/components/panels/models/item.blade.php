@@ -4,7 +4,10 @@
     <div class="px-6 py-4">
         <div class="text-black font-bold text-xl mb-2"><a class="hover:text-orange" href="{{route('catalog.show', $car)}}">{{$car->name}}</a></div>
         <p class="text-grey-darker text-base">
-            <span class="inline-block">{{number_format($car->price, 0, '', ' ')}} ₽</span><span class="inline-block line-through pl-6 text-gray-400">{{$car->old_price ? number_format($car->old_price, 0, '', ' ') . '₽' : ''}}</span>
+            <span class="inline-block">{{number_format($car->price, 0, '', ' ')}} ₽</span>
+            @if ($car->old_price)
+            <span class="inline-block line-through pl-6 text-gray-400">{{number_format($car->old_price, 0, '', ' ')}} ₽</span>
+            @endif
         </p>
     </div>
 </div>

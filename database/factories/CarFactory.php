@@ -19,7 +19,7 @@ class CarFactory extends Factory
         return [
             'name' => $this->faker->unique()->word,
             'body' => $this->faker->realText,
-            'price' => $this->faker->numberBetween(500000, 1000000),
+            'price' => $this->faker->numberBetween(750000, 1200000),
             'salon' => $this->faker->word,
             'car_class_id' => CarClass::factory(),
             'kpp' => $this->faker->word,
