@@ -15,3 +15,4 @@ Route::get('/forclients', [PageController::class, 'forclients'])->name('forclien
 Route::get('/salons', [PageController::class, 'salons'])->name('salons');
 
 Route::resource('/articles', ArticlesPageController::class);
+
