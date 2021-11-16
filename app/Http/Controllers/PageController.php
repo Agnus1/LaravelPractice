@@ -30,7 +30,8 @@ class PageController extends Controller
 
     public function forclients()
     {
-        return view('pages.forclients');
+        $cars = \App\Models\Car::get();
+        return view('pages.forclients', ['cars' => $cars]);
     }
 
     public function salons()
