@@ -54,7 +54,7 @@
                                 <x-panels.table.item text="Салон" :value="$car->salon"/>
                                 <x-panels.table.item text="Класс" :value="optional($car->carClass)->name"/>
                                 <x-panels.table.item text="КПП" :value="$car->kpp"/>
-                                <x-panels.table.item text="Год выпуска" :value="$car->year->format('d M Y')"/>
+                                <x-panels.table.item text="Год выпуска" :value="$car->year->formatLocalized('%d %b %Y')"/>
                                 <x-panels.table.item text="Цвет" :value="$car->color"/>
                                 <x-panels.table.item text="Кузов" :value="optional($car->carBody)->name"/>
                                 <x-panels.table.item text="Двигатель" :value="optional($car->carEngine)->name"/>
