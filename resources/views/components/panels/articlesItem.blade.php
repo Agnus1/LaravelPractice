@@ -16,7 +16,7 @@
                 <span class="text-sm text-white italic rounded bg-orange px-2">Теги</span>
             </div>
             <div class="flex items-center">
-                <p class="text-sm text-gray-400 italic">{{$article->published_at->format('d M Y')}}</p>
+                <p class="text-sm text-gray-400 italic">{{$article->published_at->formatLocalized('%d %b %Y')}}</p>
             </div>
         </div>
     </div>

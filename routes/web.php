@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\ArticlesPageController;
-use App\Http\Controllers\CreateArticleController;
+use App\Http\Controllers\CatalogPageController;
 
 Route::get('/', [HomePageController::class, 'homepage'])->name('home');
 Route::get('/about',[PageController::class, 'about'])->name('about');
@@ -15,4 +15,7 @@ Route::get('/forclients', [PageController::class, 'forclients'])->name('forclien
 Route::get('/salons', [PageController::class, 'salons'])->name('salons');
 
 Route::resource('/articles', ArticlesPageController::class);
+//Route::resource('/catalog', CatalogPageController::class);
 
+Route::get('/catalog', [CatalogPageController::class, 'index'])->name('catalog.index');
+Route::get('/products/{car}', [CatalogPageController::class, 'show'])->name('catalog.show');
