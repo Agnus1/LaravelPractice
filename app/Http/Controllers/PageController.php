@@ -28,11 +28,6 @@ class PageController extends Controller
         return view('pages.financial');
     }
 
-    public function forclients()
-    {
-        $cars = \App\Models\Car::get();
-        return view('pages.forclients', ['cars' => $cars]);
-    }
 
     public function salons()
     {

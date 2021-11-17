@@ -9,45 +9,33 @@
 @section('info')
     <div class="space-y-4">
         <p>Ниже представлен пример отображения контента</p>
-
         {{-- средня цена моделей --}}
-        @dump($cars->average->price)
+        @dump($average)
 
         {{-- средня цена моделей, только тех, на которые действует скидка --}}
-        @dump($cars->average->old_price)
+        @dump($avrOld)
 
         {{-- самая дорогая модель --}}
-        @dump(($cars->max->price))
+        @dump($expen)
 
         {{-- коллекция содержащая все виды салонов моделей --}}
-        @dump($cars->pluck('salon')->unique())
+        @dump($salons)
 
         {{-- коллекцая состоящая из названий двигателей, отсортированных по алфавиту --}}
-        @dump($cars->whereNotNull('car_engine_id')->map(function ($item) {
-            return $item->carEngine->name;
-        })->unique()->sort())
+        @dump($engines)
 
         {{-- коллекция состоящая из названий классов моделей,
         отсортированных по алфавиту, ключ - slug по названию класса --}}
-        @dump($cars->whereNotNull('car_class_id')->mapWithKeys(function ($item, $key) {
-            return  [Str::slug($item->carClass->name) => $item->carClass->name];
-        })->sort())
+        @dump($classes)
 
         {{-- коллекция моделей со скидкой, а также в названии этих моделей,
         или в названии их двигателей, или КПП, должна содержится цифра 5 или 6. --}}
-        @dump($cars->whereNotNull('old_price')->filter(function ($item, $key) {
-            return (
-                Str::contains($item->name, ['5', '6']) ||
-                Str::contains(optional($item->carEngine)->name, ['5', '6']) ||
-                Str::contains($item->kpp, ['5', '6'])
-            );
-        }))
+        @dump($models)
 
         {{-- коллекция всех видов кузовов отсортированных по возрастанию средней цены (для моделей, без учета скидок),
         где ключом является название вида кузова, а значением средняя цена на модели с этим видом кузова. --}}
-        @dump($cars->whereNotNull('car_body_id')->mapWithKeys(function ($item, $key) use ($cars) {
-            return [$item->carBody->name => $cars->where('car_body_id', $item->car_body_id)->average('price')];
-        })->sort())
+        @dump($bodies)
+
 
         <h2 class="text-black text-2xl font-bold">Заголовок второго уровня</h2>
         <img src="/assets/pictures/car_cerato.png" alt="" title="">
