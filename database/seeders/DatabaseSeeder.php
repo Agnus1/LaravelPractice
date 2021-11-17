@@ -17,8 +17,10 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             ArticlesSeeder::class,
-            CarPartsSeeder::class,
-            CarsSeeder::class,
+            TagsSeeder::class,
+            TaggablesSeeder::class,
+//            CarsSeeder::class,
+//            CarPartsSeeder::class,
         ]);
     }
 }

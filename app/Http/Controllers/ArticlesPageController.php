@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Services\TagsSynchronizer;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use \App\Http\Requests\CreateRequest;
@@ -25,7 +26,7 @@ class ArticlesPageController extends Controller
         return view('pages.articles.create');
     }
 
-    public function store(CreateRequest $request)
+    public function store(CreateRequest $request, TagsSynchronizer $tagsSynchronizer)
     {
         Article::create($request->validated());
         return redirect()->route('articles.index');
@@ -36,8 +37,9 @@ class ArticlesPageController extends Controller
         return view('pages.articles.edit', ['article' => $article]);
     }
 
-    public function update(Article $article, CreateRequest $request)
+    public function update(Article $article, CreateRequest $request, TagsSynchronizer $tagsSynchronizer)
     {
+        //$tagsSynchronizer->sync(,$article);
         $article->update($request->validated());
         return redirect()->route('articles.show', ['article' => $article]);
     }

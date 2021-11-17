@@ -12,8 +12,7 @@
                 <a class="hover:text-orange" href="{{route('articles.show', $article)}}">{{$article->description}}</a>
             </p>
             <div>
-                <span class="text-sm text-white italic rounded bg-orange px-2">Это</span>
-                <span class="text-sm text-white italic rounded bg-orange px-2">Теги</span>
+                <x-panels.tags :article="$article"/>
             </div>
             <div class="flex items-center">
                 <p class="text-sm text-gray-400 italic">{{$article->published_at->formatLocalized('%d %b %Y')}}</p>
