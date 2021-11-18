@@ -19,8 +19,8 @@ class DatabaseSeeder extends Seeder
             ArticlesSeeder::class,
             TagsSeeder::class,
             TaggablesSeeder::class,
-//            CarsSeeder::class,
-//            CarPartsSeeder::class,
+            CarPartsSeeder::class,
+            CarsSeeder::class,
         ]);
     }
 }

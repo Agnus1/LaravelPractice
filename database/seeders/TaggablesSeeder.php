@@ -20,7 +20,7 @@ class TaggablesSeeder extends Seeder
         $articles = Article::get();
 
         Taggables::factory()
-            ->count(40)
+            ->count(30)
             ->state(function (array $attributes) use ($articles, $tags) {
                 return [
                     'tag_id' => $tags->random(),

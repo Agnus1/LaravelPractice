@@ -16,7 +16,7 @@ class ArticlesSeeder extends Seeder
     public function run()
     {
         \App\Models\Article::factory()
-            ->count(20)
+            ->count(30)
             ->state(new Sequence(
                 function ($sequence) {
                     if ($sequence->index < 5) {
