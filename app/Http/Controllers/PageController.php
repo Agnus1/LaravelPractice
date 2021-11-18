@@ -28,10 +28,6 @@ class PageController extends Controller
         return view('pages.financial');
     }
 
-    public function forclients()
-    {
-        return view('pages.forclients');
-    }
 
     public function salons()
     {
