@@ -17,7 +17,6 @@ class CreateTaggablesTable extends Migration
             $table->foreignId('tag_id')->constrained();
             $table->morphs('taggable');
             $table->primary(['tag_id', 'taggable_type', 'taggable_id']);
-            $table->timestamps();
         });
     }
 

@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Article;
+use App\Models\Tag;
 use Faker\Factory;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Seeder;
@@ -15,7 +17,8 @@ class ArticlesSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Article::factory()
+        $tags = Tag::factory()->count(30)->create();;
+        $articles = Article::factory()
             ->count(30)
             ->state(new Sequence(
                 function ($sequence) {
@@ -26,5 +29,11 @@ class ArticlesSeeder extends Seeder
                 }
             ))
             ->create();
+
+        foreach ($articles as $article)
+        {
+            $article->tags()->sync($tags->random());
+            $articles->random()->tags()->sync($tags->random(), $tags->random());
+        }
     }
 }
