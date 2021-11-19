@@ -8,6 +8,8 @@ use App\Repositories\CarsRepository;
 use App\Repositories\CarsRepositoryContract;
 use App\Repositories\TagsRepository;
 use App\Repositories\TagsRepositoryContract;
+use App\Services\TagsSynchronizer;
+use App\Services\TagsSynchronizerContract;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -29,8 +31,9 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        app()->bind(CarsRepositoryContract::class, CarsRepository::class);
-        app()->bind(ArticlesRepositoryContract::class, ArticlesRepository::class);
-        app()->bind(TagsRepositoryContract::class, TagsRepository::class);
+        app()->singleton(CarsRepositoryContract::class, CarsRepository::class);
+        app()->singleton(ArticlesRepositoryContract::class, ArticlesRepository::class);
+        app()->singleton(TagsRepositoryContract::class, TagsRepository::class);
+        app()->singleton(TagsSynchronizerContract::class, TagsSynchronizer::class);
     }
 }

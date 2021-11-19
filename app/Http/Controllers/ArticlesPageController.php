@@ -8,6 +8,7 @@ use App\Repositories\TagsRepositoryContract;
 use \App\Services\TagsSynchronizer;
 use \App\Http\Requests\CreateRequest;
 use \App\Http\Requests\TagValidationRequest;
+use App\Services\TagsSynchronizerContract;
 
 
 class ArticlesPageController extends Controller
@@ -18,7 +19,7 @@ class ArticlesPageController extends Controller
 
     public function __construct(ArticlesRepositoryContract $repository,
                                 TagsRepositoryContract $tagRepository,
-                                TagsSynchronizer $tagsSynchronizer
+                                TagsSynchronizerContract $tagsSynchronizer
     )
     {
         $this->articlesRepository = $repository;

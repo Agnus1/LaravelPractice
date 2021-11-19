@@ -2,14 +2,11 @@
 
 namespace App\Services;
 
-use App\Models\Article;
-use App\Models\Tag;
 use App\Repositories\TagsRepositoryContract;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
-use function PHPUnit\Framework\isEmpty;
 
-class TagsSynchronizer
+class TagsSynchronizer implements TagsSynchronizerContract
 {
     public function sync(Collection $tags,
                          HasTags $model,
