@@ -29,8 +29,5 @@ class AppServiceProvider extends ServiceProvider
         setlocale(LC_TIME, 'rus.UTF-8');
         Carbon::setLocale(config('app.locale'));
 
-        $this->app->singleton(TagsSynchronizer::class, function () {
-            return new TagsSynchronizer();
-        });
     }
 }

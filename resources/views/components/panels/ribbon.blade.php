@@ -5,8 +5,6 @@
         <span class="inline-block text-gray-200 pl-1"> / <a href="{{route('articles.index')}}" class="inline-block pl-1 text-gray-200 hover:text-orange"><b>Все</b></a></span>
     </div>
     <div class="grid md:grid-cols-1 lg:grid-cols-3 gap-6">
-        @foreach($articles as $article)
-            <x-panels.ribbon_item :article="$article"/>
-        @endforeach
+        @each('components.panels.ribbon_item', $articles, 'article')
     </div>
 </section>

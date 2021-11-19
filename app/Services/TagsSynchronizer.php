@@ -18,13 +18,8 @@ class TagsSynchronizer
         }
 
         Tag::upsert($tags->get('tags'), ['name']);
-        $tagsId = collect();
-        $allTags = Tag::all();
         $tagNames = Arr::pluck($tags->get('tags'), 'name');
-
-        foreach ($tagNames as $tagName) {
-                $tagsId->push($allTags->where('name', $tagName)->pluck('id'));
-            }
+        $tagsId = Tag::whereIn('name', $tagNames)->pluck('id');
 
         $model->tags()->sync($tagsId->flatten()->toArray());
     }
