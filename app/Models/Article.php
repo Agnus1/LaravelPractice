@@ -16,14 +16,6 @@ class Article extends Model implements HasTags
         'published_at' => 'date: d M Y'
     ];
 
-    public static function getLatest()
-    {
-        return self::query()
-            ->whereNotNull('published_at')
-            ->latest('published_at')
-            ->limit(3)
-            ->get();
-    }
 
     public function getRouteKeyName()
     {

@@ -11,7 +11,7 @@
             <x-panels.models :cars="$cars"/>
 
             <div class="text-center mt-4">
-               <x-panels.navigation.pagination/>
+                {{$cars->onEachSide(1)->links()}}
             </div>
     <div/>
 @endsection

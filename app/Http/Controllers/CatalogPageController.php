@@ -3,21 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Car;
-use Illuminate\Http\Request;
+use App\Repositories\CarsRepositoryContract;
 
 class CatalogPageController extends Controller
 {
-    public function index()
+    public function index(CarsRepositoryContract  $carRepository)
     {
-        $cars = \App\Models\Car::query()
-            ->select([
-                'id', 'name', 'price',
-                'old_price', 'body',
-                'salon', 'kpp', 'year',
-                'car_class_id', 'car_body_id',
-                'car_engine_id', 'color',
-            ])
-            ->get();
+        $cars = $carRepository->paginate(16);
 
         return view('pages.catalog.index', ['cars' => $cars]);
     }
