@@ -11,11 +11,9 @@
         <a class="inline-flex items-center text-orange hover:opacity-75" href="{{route('articles.create')}}">
             Создать статью
         </a>
-
         @each('components.panels.articlesItem',$articles, 'article')
-
         <div>
-            <x-panels.navigation.pagination/>
+            {{$articles->onEachSide(1)->links()}}
         </div>
     </div>
 @endsection

@@ -3,15 +3,33 @@
 namespace App\Http\Controllers;
 
 use \App\Models\Article;
+use App\Repositories\ArticlesRepositoryContract;
+use App\Repositories\TagsRepositoryContract;
 use \App\Services\TagsSynchronizer;
 use \App\Http\Requests\CreateRequest;
 use \App\Http\Requests\TagValidationRequest;
+use App\Services\TagsSynchronizerContract;
+
 
 class ArticlesPageController extends Controller
 {
+    private $articlesRepository;
+    private $tagsRepository;
+    private $tagsSynchronizer;
+
+    public function __construct(ArticlesRepositoryContract $repository,
+                                TagsRepositoryContract $tagRepository,
+                                TagsSynchronizerContract $tagsSynchronizer
+    )
+    {
+        $this->articlesRepository = $repository;
+        $this->tagsRepository = $tagRepository;
+        $this->tagsSynchronizer = $tagsSynchronizer;
+    }
+
     public function index()
     {
-        $articles = \App\Models\Article::getLatest();
+        $articles = $this->articlesRepository->paginate(5);
         return view('pages.articles.index', ['articles' => $articles]);
     }
 
@@ -27,11 +45,11 @@ class ArticlesPageController extends Controller
 
     public function store(CreateRequest $request,
                           TagValidationRequest $tagRequest,
-                          TagsSynchronizer $tagsSynchronizer)
+    )
     {
-        $article = Article::create($request->validated());
+        $article = $this->articlesRepository->create($request->validated());
         $tags = $tagRequest->safe()->collect();
-        $tagsSynchronizer->sync($tags,$article);
+        $this->tagsSynchronizer->sync($tags, $article, $this->tagsRepository);
 
         return redirect()->route('articles.index');
     }
@@ -43,13 +61,12 @@ class ArticlesPageController extends Controller
 
     public function update(Article $article,
                            CreateRequest $request,
-                           TagValidationRequest $tagRequest,
-                           TagsSynchronizer $tagsSynchronizer
+                           TagValidationRequest $tagRequest
     )
     {
         $article->update($request->validated());
         $tags = $tagRequest->safe()->collect();
-        $tagsSynchronizer->sync($tags,$article);
+        $this->tagsSynchronizer->sync($tags, $article, $this->tagsRepository);
 
         return redirect()->route('articles.show', ['article' => $article]);
     }

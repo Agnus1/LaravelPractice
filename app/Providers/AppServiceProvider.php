@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
-use App\Services\TagsSynchronizer;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\ServiceProvider;
-use App\Services\HasTags;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -28,6 +28,6 @@ class AppServiceProvider extends ServiceProvider
     {
         setlocale(LC_TIME, 'rus.UTF-8');
         Carbon::setLocale(config('app.locale'));
-
+        Paginator::defaultView('pagination::default');
     }
 }
