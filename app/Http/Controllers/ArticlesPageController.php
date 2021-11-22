@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Article;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Str;
+use \App\Models\Article;
+use \App\Services\TagsSynchronizer;
 use \App\Http\Requests\CreateRequest;
+use \App\Http\Requests\TagValidationRequest;
 
 class ArticlesPageController extends Controller
 {
@@ -25,9 +25,14 @@ class ArticlesPageController extends Controller
         return view('pages.articles.create');
     }
 
-    public function store(CreateRequest $request)
+    public function store(CreateRequest $request,
+                          TagValidationRequest $tagRequest,
+                          TagsSynchronizer $tagsSynchronizer)
     {
-        Article::create($request->validated());
+        $article = Article::create($request->validated());
+        $tags = $tagRequest->safe()->collect();
+        $tagsSynchronizer->sync($tags,$article);
+
         return redirect()->route('articles.index');
     }
 
@@ -36,9 +41,16 @@ class ArticlesPageController extends Controller
         return view('pages.articles.edit', ['article' => $article]);
     }
 
-    public function update(Article $article, CreateRequest $request)
+    public function update(Article $article,
+                           CreateRequest $request,
+                           TagValidationRequest $tagRequest,
+                           TagsSynchronizer $tagsSynchronizer
+    )
     {
         $article->update($request->validated());
+        $tags = $tagRequest->safe()->collect();
+        $tagsSynchronizer->sync($tags,$article);
+
         return redirect()->route('articles.show', ['article' => $article]);
     }
 

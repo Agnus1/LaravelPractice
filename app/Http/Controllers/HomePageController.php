@@ -2,22 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use \App\Models\Car;
+use App\Models\Article;
+
 class HomePageController extends Controller
 {
     public function homepage()
     {
-        $articles = \App\Models\Article::getLatest();
-        $cars = \App\Models\Car::query()
-            ->select([
-                'id', 'name', 'price',
-                'old_price','body',
-                'salon', 'kpp', 'year',
-                'car_class_id', 'car_body_id',
-                'car_engine_id', 'color',
-            ])
+        $articles = Article::getLatest();
+        $cars = Car::query()
             ->where('is_new', '>', '0')
             ->limit(4)
-            ->get();;
+            ->get();
 
         return view('pages.homepage', ['articles' => $articles, 'cars' => $cars]);
     }

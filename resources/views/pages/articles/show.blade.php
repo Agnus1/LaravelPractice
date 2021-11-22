@@ -10,8 +10,7 @@
     <div class="space-y-4">
         <img src="/assets/pictures/car_new_stinger.png" alt="" title="">
         <div>
-            <span class="text-sm text-white italic rounded bg-orange px-2">Это</span>
-            <span class="text-sm text-white italic rounded bg-orange px-2">Теги</span>
+            <x-panels.tags :article="$article"/>
         </div>
         <p>{{$article->body}}</p>
     </div>

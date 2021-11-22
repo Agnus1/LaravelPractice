@@ -21,6 +21,13 @@
                             placeholder="Введите детальное описание"/>
 </x-panels.form.group>
 
+<x-panels.form.group for="tags_field" label="Теги" error="{{$errors->first('tags')}}">
+    <x-panels.form.text id="tags_field"
+                        name="tags"
+                        value="{{old('tags', $article ? $article->tags->pluck('name')->implode(',') : '')}}"
+                        placeholder="Укажите теги"/>
+</x-panels.form.group>
+
 <div class="block">
     <div class="mt-2">
         <x-panels.form.checkbox name='is_published' text='Опубликовать'/>

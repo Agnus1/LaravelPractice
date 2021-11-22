@@ -1,4 +1,3 @@
-@props(['car'])
 <div class="bg-white w-full border border-gray-100 rounded overflow-hidden shadow-lg hover:shadow-2xl pt-4">
     <a class="block w-full h-40" href="{{route('catalog.show', $car)}}"><img class="w-full h-full hover:opacity-90 object-cover" src="/assets/pictures/car_cerato.png" alt="Cerato"></a>
     <div class="px-6 py-4">
