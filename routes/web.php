@@ -18,4 +18,4 @@ Route::resource('/articles', ArticlesPageController::class);
 //Route::resource('/catalog', CatalogPageController::class);
 
 Route::get('/products/{car}', [CatalogPageController::class, 'show'])->name('catalog.show');
-Route::get('/catalog/{category}', [CatalogPageController::class, 'index'])->name('catalog.index');
+Route::get('/catalog/{slug}', [CatalogPageController::class, 'index'])->name('catalog.index');

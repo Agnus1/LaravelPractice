@@ -4,15 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Car;
 use App\Repositories\CarsRepositoryContract;
-use App\Models\Category;
+use App\Repositories\CategoriesRepositoryContract;
 
 class CatalogPageController extends Controller
 {
-    public function index(CarsRepositoryContract  $carRepository, Category $category)
+    public function index(string $slug,
+            CarsRepositoryContract  $carRepository,
+            CategoriesRepositoryContract $categoryRepository
+            )
     {
-        $categories = $category->descendants()->pluck('id');
-        $categories[] = $category->getKey();
-        $cars = $carRepository->whereCategoriesId($categories)->paginate(16);
+        $category = $categoryRepository->getBySlug($slug);
+        $categoriesId = $categoryRepository->getBranchIds($slug);
+        $cars = $carRepository->whereCategoriesIdPaginate($categoriesId->ToArray(), 16);
         
         return view('pages.catalog.index', ['cars' => $cars, 'category' => $category]);
     }

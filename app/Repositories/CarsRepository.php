@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Car;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class CarsRepository implements CarsRepositoryContract
 {
@@ -14,20 +15,9 @@ class CarsRepository implements CarsRepositoryContract
             ->limit($count)
             ->get();
     }
-
-    public function paginate(int $count)
-    {
-        return Car::query()
-            ->latest('year')
-            ->paginate($count);
-    }
-
-    public function get(): Collection
-    {
-        return Car::get();
-    }
     
-    public function whereCategoriesId($categoriesId) {
-        return Car::whereIn('category_id', $categoriesId)->latest('year');
+    public function whereCategoriesIdPaginate(array $categoriesId, int $paginate) : LengthAwarePaginator
+    {
+        return Car::whereIn('category_id', $categoriesId)->latest('year')->paginate($paginate);
     }
 }

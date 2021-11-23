@@ -19,7 +19,7 @@
                         </a>
                     @endif
                         <ul class="dropdown-navigation-submenu absolute hidden group-hover:block bg-white shadow-lg">
-                            @foreach($category->getDescendantsOnDepth(1) as $subCategory)
+                            @foreach($category->getDescendantsOnDepth('=', 1) as $subCategory)
                                 <li><a class="block py-2 px-4 {{$currentCategoryName === $subCategory->name ? 'text-orange' : 'text-black'}} hover:text-orange hover:bg-gray-100" href="{{route('catalog.index', $subCategory)}}">{{$subCategory->name}}</a></li>
                             @endforeach
                         </ul>

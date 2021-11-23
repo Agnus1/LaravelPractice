@@ -3,11 +3,10 @@
 namespace App\Repositories;
 
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 interface CarsRepositoryContract
 {
-    public function getNew(int $count);
-    public function paginate(int $count);
-    public function get();
-    public function whereCategoriesId($categoriesId);
+    public function getNew(int $count) : Collection;
+    public function whereCategoriesIdPaginate(array $categoriesId, int $paginate) : LengthAwarePaginator;
 }

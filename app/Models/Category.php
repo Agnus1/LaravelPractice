@@ -21,8 +21,8 @@ class Category extends Model
         return 'slug';
     }
     
-    public function getDescendantsOnDepth($depth)
+    public function getDescendantsOnDepth($operator, $depth)
     {
-        return $this->descendants()->withDepth()->having('depth', '=', 1)->orderBy('sort')->get();
+        return $this->descendants()->withDepth()->having('depth', $operator, $depth)->orderBy('sort')->get();
     }
 }
