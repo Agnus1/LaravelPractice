@@ -5,7 +5,7 @@ namespace App\Repositories;
 use App\Models\Car;
 use Illuminate\Database\Eloquent\Collection;
 
-class CarsRepository implements  CarsRepositoryContract
+class CarsRepository implements CarsRepositoryContract
 {
     public function getNew(int $count) : Collection
     {
@@ -25,5 +25,9 @@ class CarsRepository implements  CarsRepositoryContract
     public function get(): Collection
     {
         return Car::get();
+    }
+    
+    public function whereCategoriesId($categoriesId) {
+        return Car::whereIn('category_id', $categoriesId)->latest('year');
     }
 }
