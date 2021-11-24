@@ -2,10 +2,10 @@
 
 namespace Database\Factories;
 
-use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Image;
 
-class ImageFactory extends Factory
+class BannerFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -15,8 +15,10 @@ class ImageFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->unique()->word,
-            'path' => Str::afterLast($this->faker->image(public_path('storage\images')), 'storage\\'),
+            'title' => $this->faker->unique()->word,
+            'description' => $this->faker->text(150),
+            'link' => $this->faker->url,
+            'image_id' => Image::factory(),
         ];
     }
 }

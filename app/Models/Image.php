@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Car;
 use App\Models\Article;
+use App\Models\Banner;
 
 class Image extends Model
 {
@@ -26,5 +27,10 @@ class Image extends Model
     public function articles()
     {
         return $this->hasMany(Article::class);
+    }
+    
+    public function banners()
+    {
+        return $this->hasMany(Banner::class);
     }
 }

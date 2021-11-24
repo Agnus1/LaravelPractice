@@ -15,6 +15,8 @@ use App\Repositories\CategoriesRepository;
 use App\Repositories\CategoriesRepositoryContract;
 use App\Repositories\ImagesRepository;
 use App\Repositories\ImagesRepositoryContract;
+use App\Repositories\BannersRepository;
+use App\Repositories\BannersRepositoryContract;
 use App\Services\ImagesSynchronizerContract;
 use App\Services\ImagesSynchronizer;
 
@@ -44,5 +46,6 @@ class RepositoryServiceProvider extends ServiceProvider
         app()->singleton(ImagesSynchronizerContract::class, ImagesSynchronizer::class);
         app()->singleton(CategoriesRepositoryContract::class, CategoriesRepository::class);
         app()->singleton(ImagesRepositoryContract::class, ImagesRepository::class);
+        app()->singleton(BannersRepositoryContract::class, BannersRepository::class);
     }
 }
