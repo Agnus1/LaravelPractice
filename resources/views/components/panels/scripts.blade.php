@@ -2,6 +2,18 @@
 <script src="/assets/js/vendor/slick.min.js"></script>
 <script src="/assets/js/script.js"></script>
 <script>
+    function readURL(input) {
+           if (input.files && input.files[0]) {
+               var reader = new FileReader();
+               reader.onload = function (e) {
+                   $('#blah')
+                       .attr('src', e.target.result);
+               };
+               reader.readAsDataURL(input.files[0]);
+           }
+       }
+</script>
+<script>
     $(function () {
         $('[data-slick-carousel-detail]').each(function () {
             let $carousel = $(this);

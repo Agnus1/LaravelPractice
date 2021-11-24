@@ -34,7 +34,7 @@ class CreateRequest extends FormRequest
                 'required',
                 Rule::unique('articles')->ignore($this->article, 'slug')
             ],
-            'published_at' => 'nullable|date'
+            'published_at' => 'nullable|date',
         ];
     }
 

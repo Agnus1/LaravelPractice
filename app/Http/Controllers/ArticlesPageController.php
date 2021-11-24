@@ -6,23 +6,27 @@ use App\Repositories\ArticlesRepositoryContract;
 use App\Repositories\TagsRepositoryContract;
 use \App\Http\Requests\CreateRequest;
 use \App\Http\Requests\TagValidationRequest;
+use \App\Http\Requests\ImageValidationRequest;
 use App\Services\TagsSynchronizerContract;
-
+use App\Services\ImagesSynchronizerContract;
 
 class ArticlesPageController extends Controller
 {
     private $articlesRepository;
     private $tagsRepository;
     private $tagsSynchronizer;
-
+    private $imagesSynchronizer;
+    
     public function __construct(ArticlesRepositoryContract $repository,
                                 TagsRepositoryContract $tagRepository,
-                                TagsSynchronizerContract $tagsSynchronizer
+                                TagsSynchronizerContract $tagsSynchronizer,
+                                ImagesSynchronizerContract $imagesSynchronizer,
     )
     {
         $this->articlesRepository = $repository;
         $this->tagsRepository = $tagRepository;
         $this->tagsSynchronizer = $tagsSynchronizer;
+        $this->imagesSynchronizer = $imagesSynchronizer;
     }
 
     public function index()
@@ -44,12 +48,17 @@ class ArticlesPageController extends Controller
 
     public function store(CreateRequest $request,
                           TagValidationRequest $tagRequest,
+                          ImageValidationRequest $imageRequest
     )
     {
-        $article = $this->articlesRepository->create($request->validated());
+        $attributes = $request->validated();
+        $imageAttributes = $imageRequest->safe()->collect();
         $tags = $tagRequest->safe()->collect();
+        
+        $article = $this->articlesRepository->create($attributes);
         $this->tagsSynchronizer->sync($tags, $article);
-
+        $this->imagesSynchronizer->sync($imageAttributes, $article);
+        
         return redirect()->route('articles.index');
     }
 
@@ -59,12 +68,20 @@ class ArticlesPageController extends Controller
         return view('pages.articles.edit', ['article' => $article]);
     }
 
-    public function update(string $slug, CreateRequest $request, TagValidationRequest $tagRequest)
+    public function update(string $slug, 
+                           CreateRequest $request,
+                           TagValidationRequest $tagRequest,
+                           ImageValidationRequest $imageRequest
+    )
     {
-        $article = $this->articlesRepository->update($slug, $request->validated());
+        $attributes = $request->validated();
+        $imageAttributes = $imageRequest->safe()->collect();
         $tags = $tagRequest->safe()->collect();
+        
+        $article = $this->articlesRepository->update($slug, $attributes);
         $this->tagsSynchronizer->sync($tags, $article);
-
+        $this->imagesSynchronizer->sync($imageAttributes, $article);
+        
         return redirect()->route('articles.show', ['article' => $article]);
     }
 

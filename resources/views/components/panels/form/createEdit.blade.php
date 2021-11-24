@@ -28,6 +28,11 @@
                         placeholder="Укажите теги"/>
 </x-panels.form.group>
 
+<x-panels.form.group for="image_field" label="Выберите изображение" error="{{$errors->first('image')}}">
+    <x-panels.form.image-selector id="image_field" name="image"/>
+</x-panels.form.group>
+
+
 <div class="block">
     <div class="mt-2">
         <x-panels.form.checkbox name='is_published' text='Опубликовать'/>

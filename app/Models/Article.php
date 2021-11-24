@@ -5,8 +5,10 @@ namespace App\Models;
 use App\Services\HasTags;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Image;
+use App\Services\HasImages;
 
-class Article extends Model implements HasTags
+class Article extends Model implements HasTags, HasImages
 {
     use HasFactory;
 
@@ -21,8 +23,14 @@ class Article extends Model implements HasTags
         return 'slug';
     }
 
+    public function image()
+    {
+        return $this->belongsTo(Image::class);
+    }
+    
     public function tags()
     {
         return $this->morphToMany(Tag::class, 'taggable');
     }
+    
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class EditCarsTable extends Migration
+class CreateCarImageTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class EditCarsTable extends Migration
      */
     public function up()
     {
-        Schema::table('cars', function(Blueprint $table){
-            $table->foreignId('category_id')->constrained();
-            $table->foreignId('image_id')->nullable(true)->constrained();
+        Schema::create('car_image', function (Blueprint $table) {
+            $table->foreignId('image_id')->unique()->constrained();
+            $table->foreignId('car_id')->constrained();
+            $table->primary(['image_id', 'car_id']);
         });
     }
 
@@ -26,6 +27,6 @@ class EditCarsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('car_image');
     }
 }
