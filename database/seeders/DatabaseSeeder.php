@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use \Faker\Factory;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,6 +15,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
+            ImageSeeder::class,
             ArticlesSeeder::class,
             CarPartsSeeder::class,
             CategorySeeder::class,

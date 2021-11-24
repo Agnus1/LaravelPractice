@@ -8,7 +8,7 @@
 
 @section('info')
     <div class="space-y-4">
-        <img src="/assets/pictures/car_new_stinger.png" alt="" title="">
+        <img src="{{Storage::url($article->image->path)}}" alt="" title="">
         <div>
             <x-panels.tags :article="$article"/>
         </div>

@@ -9,7 +9,7 @@
         <x-panels.form.errors/>
         <x-panels.form.success text="Статья успешно отредактирована"/>
 
-        <form method="POST" action="{{route('articles.update', $article)}}">
+        <form method="POST" action="{{route('articles.update', $article)}}" enctype="multipart/form-data">
             @csrf
             @method('PATCH')
             <div class="mt-8 max-w-md">

@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Seeder;
 use App\Models\Car;
 use App\Models\Category;
+use App\Models\Image;
+use Illuminate\Database\Eloquent\Collection;
 
 class CarsSeeder extends Seeder
 {
@@ -23,11 +25,12 @@ class CarsSeeder extends Seeder
         $classes = CarClass::get();
         $bodies = CarBody::get();
         $categories = Category::get();
+        $images = Image::get();
         
-        Car::factory()
+        $cars = Car::factory()
             ->count(20)
             ->state(new Sequence(
-                function ($sequence) use ($engines, $classes, $bodies, $categories) {
+                function ($sequence) use ($engines, $classes, $bodies, $categories, $images) {
                     $doSeed = $sequence->index < 5;
                     $attributes = [
                         'car_engine_id' => rand(0, 1) || $doSeed ? $engines->random() : null,
@@ -35,10 +38,19 @@ class CarsSeeder extends Seeder
                         'car_body_id' => rand(0, 1) || $doSeed ? $bodies->random() : null,
                         'is_new' => rand(0, 1),
                         'category_id' => $categories->random(),
+                        'image_id' => $images->random(),
                     ];
                     return $attributes;
                 }
             ))
             ->create();
+  
+        foreach ($cars as $car) {
+            $count = rand(3, 4);
+            $ids = $images->random($count)->pluck('id');
+
+            $car->images_pivot()->sync($ids);
+            $images = $images->except($ids->toArray());
+        }
     }
 }

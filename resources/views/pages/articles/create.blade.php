@@ -9,7 +9,7 @@
         <x-panels.form.errors/>
         <x-panels.form.success text="Статья успешно создана"/>
 
-        <form method="post" action="{{route('articles.store')}}">
+        <form method="post" action="{{route('articles.store')}}" enctype="multipart/form-data">
             @csrf
             <div class="mt-8 max-w-md">
                 <div class="grid grid-cols-1 gap-6">

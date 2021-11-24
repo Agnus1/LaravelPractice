@@ -13,6 +13,10 @@ use App\Services\TagsSynchronizerContract;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\CategoriesRepository;
 use App\Repositories\CategoriesRepositoryContract;
+use App\Repositories\ImagesRepository;
+use App\Repositories\ImagesRepositoryContract;
+use App\Services\ImagesSynchronizerContract;
+use App\Services\ImagesSynchronizer;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -37,6 +41,8 @@ class RepositoryServiceProvider extends ServiceProvider
         app()->singleton(ArticlesRepositoryContract::class, ArticlesRepository::class);
         app()->singleton(TagsRepositoryContract::class, TagsRepository::class);
         app()->singleton(TagsSynchronizerContract::class, TagsSynchronizer::class);
+        app()->singleton(ImagesSynchronizerContract::class, ImagesSynchronizer::class);
         app()->singleton(CategoriesRepositoryContract::class, CategoriesRepository::class);
+        app()->singleton(ImagesRepositoryContract::class, ImagesRepository::class);
     }
 }

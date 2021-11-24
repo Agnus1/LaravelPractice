@@ -1,14 +1,12 @@
 <?php
 
-namespace App\View\Components\panels;
+namespace App\View\Components\Panels;
 
 use Illuminate\View\Component;
-use App\Models\Category;
-use App\Repositories\CategoriesRepository;
 use \Illuminate\Support\Facades\Route;
 use App\Repositories\CategoriesRepositoryContract;
 
-class categoriesMenu extends Component
+class CategoriesMenu extends Component
 {
     public $categories;
     public $descendants;
