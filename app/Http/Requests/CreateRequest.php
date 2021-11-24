@@ -47,7 +47,7 @@ class CreateRequest extends FormRequest
         }
 
         if ($this->article) {
-            $slug = $this->article->slug;
+            $slug = $this->article;
         } else {
             $slug = Str::slug(request('title') . uniqid());
         }

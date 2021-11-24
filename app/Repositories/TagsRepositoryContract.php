@@ -3,9 +3,10 @@
 namespace App\Repositories;
 
 use Illuminate\Database\Eloquent\Collection;
+use App\Models\Tag;
 
 interface TagsRepositoryContract
 {
     public function upsert(array $values, $uniqueBy, $update = null);
-    public function getByName($values);
+    public function getByNames(array $values) : Collection;
 }

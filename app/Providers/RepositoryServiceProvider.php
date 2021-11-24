@@ -11,6 +11,8 @@ use App\Repositories\TagsRepositoryContract;
 use App\Services\TagsSynchronizer;
 use App\Services\TagsSynchronizerContract;
 use Illuminate\Support\ServiceProvider;
+use App\Repositories\CategoriesRepository;
+use App\Repositories\CategoriesRepositoryContract;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -35,5 +37,6 @@ class RepositoryServiceProvider extends ServiceProvider
         app()->singleton(ArticlesRepositoryContract::class, ArticlesRepository::class);
         app()->singleton(TagsRepositoryContract::class, TagsRepository::class);
         app()->singleton(TagsSynchronizerContract::class, TagsSynchronizer::class);
+        app()->singleton(CategoriesRepositoryContract::class, CategoriesRepository::class);
     }
 }

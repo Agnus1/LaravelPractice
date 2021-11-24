@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use \App\Models\Article;
 use App\Repositories\ArticlesRepositoryContract;
 use App\Repositories\TagsRepositoryContract;
-use \App\Services\TagsSynchronizer;
 use \App\Http\Requests\CreateRequest;
 use \App\Http\Requests\TagValidationRequest;
 use App\Services\TagsSynchronizerContract;
@@ -33,8 +31,9 @@ class ArticlesPageController extends Controller
         return view('pages.articles.index', ['articles' => $articles]);
     }
 
-    public function show(Article $article)
+    public function show(string $slug)
     {
+        $article = $this->articlesRepository->findBySlug($slug);
         return view('pages.articles.show', ['article' => $article]);
     }
 
@@ -49,31 +48,29 @@ class ArticlesPageController extends Controller
     {
         $article = $this->articlesRepository->create($request->validated());
         $tags = $tagRequest->safe()->collect();
-        $this->tagsSynchronizer->sync($tags, $article, $this->tagsRepository);
+        $this->tagsSynchronizer->sync($tags, $article);
 
         return redirect()->route('articles.index');
     }
 
-    public function edit(Article $article)
+    public function edit(string $slug)
     {
+        $article = $this->articlesRepository->findBySlug($slug);
         return view('pages.articles.edit', ['article' => $article]);
     }
 
-    public function update(Article $article,
-                           CreateRequest $request,
-                           TagValidationRequest $tagRequest
-    )
+    public function update(string $slug, CreateRequest $request, TagValidationRequest $tagRequest)
     {
-        $article->update($request->validated());
+        $article = $this->articlesRepository->update($slug, $request->validated());
         $tags = $tagRequest->safe()->collect();
-        $this->tagsSynchronizer->sync($tags, $article, $this->tagsRepository);
+        $this->tagsSynchronizer->sync($tags, $article);
 
         return redirect()->route('articles.show', ['article' => $article]);
     }
 
-    public function destroy(Article $article)
+    public function destroy(string $slug)
     {
-        $article->delete();
+        $this->articlesRepository->delete($slug);
         return redirect()->route('articles.index');
     }
 }

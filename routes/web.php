@@ -17,5 +17,5 @@ Route::get('/salons', [PageController::class, 'salons'])->name('salons');
 Route::resource('/articles', ArticlesPageController::class);
 //Route::resource('/catalog', CatalogPageController::class);
 
-Route::get('/catalog', [CatalogPageController::class, 'index'])->name('catalog.index');
 Route::get('/products/{car}', [CatalogPageController::class, 'show'])->name('catalog.show');
+Route::get('/catalog/{slug}', [CatalogPageController::class, 'index'])->name('catalog.index');

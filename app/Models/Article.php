@@ -16,7 +16,6 @@ class Article extends Model implements HasTags
         'published_at' => 'date: d M Y'
     ];
 
-
     public function getRouteKeyName()
     {
         return 'slug';

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\CarClass;
 use App\Models\CarBody;
 use App\Models\CarEngine;
+use App\Models\Category;
 
 class CarFactory extends Factory
 {
@@ -27,6 +28,7 @@ class CarFactory extends Factory
             'color' => $this->faker->word,
             'car_body_id' => CarBody::factory(),
             'car_engine_id' => CarEngine::factory(),
+            'category_id' => Category::factory(),
         ];
     }
 }
