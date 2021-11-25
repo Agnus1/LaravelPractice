@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             CarPartsSeeder::class,
             CategorySeeder::class,
             CarsSeeder::class,
+            BannerSeeder::class,
         ]);
     }
 }
