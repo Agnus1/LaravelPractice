@@ -8,25 +8,45 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class ArticlesRepository implements ArticlesRepositoryContract
 {
+    
+    private $cacheTags = ['articles', 'images', 'tags'];
+    
     public function create(array $attributes) : Article
     {
         return Article::create($attributes);
     }
 
-    public function paginate(int $count) : LengthAwarePaginator
+    public function paginate(int $count, $page) : LengthAwarePaginator
     {
-        return Article::whereNotNull('published_at')
-            ->latest('published_at')
-            ->paginate($count);
+        $paginate = \Cache::tags($this->cacheTags)->remember(
+            'articles.paginate.' . $page, 
+            now()->addMinutes(60), 
+            function () use ($count) {
+                return Article::whereNotNull('published_at')
+                                ->latest('published_at')
+                                ->with(['image', 'tags'])
+                                ->paginate($count);
+            });
+            
+        return $paginate;
     }
 
     public function getLatest($count) : Collection
     {
-        return Article::query()->whereNotNull('published_at')
-            ->latest('published_at')
-            ->limit($count)
-            ->get();
+        $latest = \Cache::tags($this->cacheTags)->remember(
+            'articles.getLatest.' . $count, 
+            now()->addMinutes(60), 
+            function () use ($count) {
+                return Article::whereNotNull('published_at')
+                                ->latest('published_at')
+                                ->limit($count)
+                                ->with(['image', 'tags'])
+                                ->get();
+            });
+         
+        return $latest;
     }
+    
     public function get() : Collection
     {
         return  Article::get();
@@ -34,7 +54,16 @@ class ArticlesRepository implements ArticlesRepositoryContract
     
     public function findBySlug(string $slug) : Article
     {
-        return Article::where('slug', $slug)->get()->first();
+        $article = \Cache::tags($this->cacheTags)->remember(
+            'articles.findBySlug.' . $slug, 
+            now()->addMinutes(60), 
+            function () use ($slug) {
+                return Article::where('slug', $slug)
+                                ->with(['image', 'tags'])
+                                ->get()
+                                ->first();
+            });
+        return $article;
     }
     
     public function delete(string $slug)

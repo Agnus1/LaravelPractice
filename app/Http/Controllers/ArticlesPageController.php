@@ -31,7 +31,8 @@ class ArticlesPageController extends Controller
 
     public function index()
     {
-        $articles = $this->articlesRepository->paginate(5);
+        $page = request()->page ?? 1;
+        $articles = $this->articlesRepository->paginate(5, $page);
         return view('pages.articles.index', ['articles' => $articles]);
     }
 
