@@ -15,7 +15,7 @@ class BannerFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->title,
+            'title' => $this->faker->name,
             'description' => $this->faker->text(150),
             'link' => $this->faker->url,
             'image_id' => Image::factory(),

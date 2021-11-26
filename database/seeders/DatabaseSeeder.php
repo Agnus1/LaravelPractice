@@ -16,11 +16,11 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             ImageSeeder::class,
+            BannerSeeder::class,
             ArticlesSeeder::class,
             CarPartsSeeder::class,
             CategorySeeder::class,
             CarsSeeder::class,
-            BannerSeeder::class,
         ]);
     }
 }

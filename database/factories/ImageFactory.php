@@ -16,7 +16,7 @@ class ImageFactory extends Factory
     {
         return [
             'name' => $this->faker->unique()->word,
-            'path' => Str::afterLast($this->faker->image(public_path('storage\images')), 'storage\\'),
+            'path' => Str::afterLast($this->faker->image(public_path('storage' . DIRECTORY_SEPARATOR .'images')), 'storage' . DIRECTORY_SEPARATOR),
         ];
     }
 }

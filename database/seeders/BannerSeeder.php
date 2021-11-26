@@ -40,12 +40,18 @@ class BannerSeeder extends Seeder
                 'title' => $banner->name,
             ]);   
         }
+    
+        Banner::factory()->count(20)->state(new Sequence(
+                function ($sequence) use ($images) {
+                    $attributes = [
+                        'image_id' => $images->random(),
+                    ];
+                    return $attributes;
+                }
+            ))
+            ->create();
         
-        Banner::factory()->count(20)
-                         ->state(function ($attributes) use ($images) {
-                            return ['image_id' => $images->random()];
-                         })
-                         ->create();
+
            
     }
 }
