@@ -26,7 +26,8 @@ class CatalogPageController extends Controller
     {
         $categoriesId = $this->categoryRepository->getBranchIds($slug);
         $category = $this->categoryRepository->getBySlug($slug);
-        $cars = $this->carsRepository->whereCategoriesIdPaginate($categoriesId->ToArray(), 16);
+        $page = request('page') ?? 1;
+        $cars = $this->carsRepository->whereCategoriesIdPaginate($categoriesId->ToArray(), 16, $page);
         
         return view('pages.catalog.index', ['cars' => $cars, 'category' => $category]);
     }

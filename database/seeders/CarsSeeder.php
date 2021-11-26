@@ -47,7 +47,6 @@ class CarsSeeder extends Seeder
 
         foreach ($cars as $car) {
             $ids = $images->random(3)->pluck('id');
-
             $car->images_pivot()->sync($ids);
             $images = $images->except($ids->toArray());
         }

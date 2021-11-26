@@ -8,7 +8,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class CarsRepository implements CarsRepositoryContract
 {
-    private $cacheTags = ['cars', 'images'];
+    private $cacheTags = ['cars', 'images', 'categories'];
     
     public function getById(int $id) : Car
     {
@@ -29,30 +29,31 @@ class CarsRepository implements CarsRepositoryContract
     public function getNew(int $count) : Collection
     {
         $newCars = \Cache::tags($this->cacheTags)->remember(
-            'cars.getNew.' . $count, 
-            now()->addMinutes(60), 
-            function () use ($count) {
-                return Car::where('is_new', '>', '0')
-                            ->limit($count)
-                            ->with('image')
-                            ->get();
-            });
+                    'cars.getNew.' . $count, 
+                    now()->addMinutes(60), 
+                    function () use ($count) {
+                        return Car::where('is_new', '>', '0')
+                                    ->limit($count)
+                                    ->with('image')
+                                    ->get();
+                    });
 
         return $newCars;
     }
     
-    public function whereCategoriesIdPaginate(array $categoriesId, int $paginate) : LengthAwarePaginator
+    public function whereCategoriesIdPaginate(array $categoriesId, int $count, int $page) : LengthAwarePaginator
     {
         $sectionIdString = (implode('-',$categoriesId));
+        
         $section = \Cache::tags($this->cacheTags)->remember(
-            'cars.whereCategoriesIdPaginate.' . $sectionIdString, 
-            now()->addMinutes(60), 
-            function () use ($categoriesId, $paginate) {
-                return Car::whereIn('category_id', $categoriesId)
-                            ->with('image')
-                            ->latest('year')
-                            ->paginate($paginate);
-            });
+                    'cars.whereCategoriesId.' . $sectionIdString . '.Paginate.' . $page . '-' . $count, 
+                    now()->addMinutes(60), 
+                    function () use ($categoriesId, $count) {
+                        return Car::whereIn('category_id', $categoriesId)
+                                    ->with('image')
+                                    ->latest('year')
+                                    ->paginate($count);
+                    });
             
         return $section;
     }

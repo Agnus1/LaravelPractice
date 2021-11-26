@@ -19,14 +19,14 @@ class ArticlesRepository implements ArticlesRepositoryContract
     public function paginate(int $count, $page) : LengthAwarePaginator
     {
         $paginate = \Cache::tags($this->cacheTags)->remember(
-            'articles.paginate.' . $page, 
-            now()->addMinutes(60), 
-            function () use ($count) {
-                return Article::whereNotNull('published_at')
-                                ->latest('published_at')
-                                ->with(['image', 'tags'])
-                                ->paginate($count);
-            });
+                    'articles.paginate.' . $page . '-' . $count, 
+                    now()->addMinutes(60), 
+                    function () use ($count) {
+                        return Article::whereNotNull('published_at')
+                                        ->latest('published_at')
+                                        ->with(['image', 'tags'])
+                                        ->paginate($count);
+                    });
             
         return $paginate;
     }

@@ -11,7 +11,7 @@ class CategoriesMenu extends Component
     public $categories;
     public $descendants;
     public $currentCategoryName;
-
+    public $categoriesRepository;
     /**
      * Create a new component instance.
      *
@@ -19,11 +19,9 @@ class CategoriesMenu extends Component
      */
     public function __construct(CategoriesRepositoryContract $categoriesRepository)
     {
-//        $this->categories = \Cache::remember('test', 3600, function() use ($categoriesRepository) {
-//            return $categoriesRepository->getRoots();
-//        });
         $this->categories = $categoriesRepository->getRoots();
         $this->currentCategoryName = Route::getCurrentRoute()->category ? Route::getCurrentRoute()->category->name : '';
+        $this->categoriesRepository = $categoriesRepository;
     }
 
     /**

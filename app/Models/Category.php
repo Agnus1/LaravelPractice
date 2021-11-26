@@ -11,6 +11,19 @@ class Category extends Model
     use HasFactory;
     use NodeTrait;
     
+        public static function booted()
+    {
+        static::created(function () {
+            \Cache::tags(['categories'])->flush();
+        });
+        static::updated(function () {
+            \Cache::tags(['categories'])->flush();
+        });
+        static::deleted(function () {
+            \Cache::tags(['categories'])->flush();
+        });
+    }
+    
     public function cars()
     {
         return $this->hasMany(Car::class);
@@ -19,10 +32,5 @@ class Category extends Model
     public function getRouteKeyName()
     {
         return 'slug';
-    }
-    
-    public function getDescendantsOnDepth($operator, $depth)
-    {
-        return $this->descendants()->withDepth()->having('depth', $operator, $depth)->orderBy('sort')->get();
     }
 }
