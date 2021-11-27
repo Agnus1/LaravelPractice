@@ -16,10 +16,8 @@ class CarsRepository implements CarsRepositoryContract
             'cars.getById.' . $id, 
             now()->addMinutes(60), 
             function () use ($id) {
-                return Car::find($id)
-                            ->with(['image', 'images_pivot'])
-                            ->get()
-                            ->first();
+                return Car::with(['image', 'images_pivot', 'carEngine', 'carClass', 'carBody', 'category'])
+                            ->find($id);
             });
         
         return $car;

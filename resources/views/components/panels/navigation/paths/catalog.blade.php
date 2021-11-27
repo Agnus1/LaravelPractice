@@ -8,12 +8,12 @@
     <svg xmlns="http://www.w3.org/2000/svg" class="inline-block h-3 w-3 mx-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7" />
     </svg>
-    @if ($category->ancestors->count())
-        <a class="hover:text-orange" href="{{route('catalog.index', $category->ancestors->first())}}">{{$category->ancestors->first()->name}}</a>
-        <svg xmlns="http://www.w3.org/2000/svg" class="inline-block h-3 w-3 mx-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7" />
-        </svg>
-    @endif
+        @foreach($category->ancestors as $ancestor)
+            <a class="hover:text-orange" href="{{route('catalog.index', $ancestor)}}">{{$ancestor->name}}</a>
+            <svg xmlns="http://www.w3.org/2000/svg" class="inline-block h-3 w-3 mx-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7" />
+            </svg>
+        @endforeach
     <span>{{$category->name}}</span>
 
 </nav>
