@@ -18,11 +18,24 @@ class Article extends Model implements HasTags, HasImages
         'published_at' => 'date: d M Y'
     ];
 
+    public static function booted()
+    {
+        static::created(function () {
+            \Cache::tags(['articles'])->flush();
+        });
+        static::updated(function () {
+            \Cache::tags(['articles'])->flush();
+        });
+        static::deleted(function () {
+            \Cache::tags(['articles'])->flush();
+        });
+    }
+    
     public function getRouteKeyName()
     {
         return 'slug';
     }
-
+    
     public function image()
     {
         return $this->belongsTo(Image::class);

@@ -14,6 +14,19 @@ class Image extends Model
 
     public $guarded = [];
       
+    public static function booted()
+    {
+        static::created(function () {
+            \Cache::tags(['images'])->flush();
+        });
+        static::updated(function () {
+            \Cache::tags(['images'])->flush();
+        });
+        static::deleted(function () {
+            \Cache::tags(['images'])->flush();
+        });
+    }
+    
     public function cars()
     {
         return $this->hasMany(Car::class);

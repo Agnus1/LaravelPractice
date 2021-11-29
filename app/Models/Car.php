@@ -15,6 +15,19 @@ class Car extends Model
         'year' => 'date: d M Y'
     ];
 
+    public static function booted()
+    {
+        static::created(function () {
+            \Cache::tags(['cars'])->flush();
+        });
+        static::updated(function () {
+            \Cache::tags(['cars'])->flush();
+        });
+        static::deleted(function () {
+            \Cache::tags(['cars'])->flush();
+        });
+    }
+    
     public function carClass()
     {
         return $this->belongsTo(CarClass::class);
