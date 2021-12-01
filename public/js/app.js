@@ -2096,8 +2096,8 @@ $(function () {
       arrows: false,
       appendDots: $carousel.find('[data-slick-carousel-detail-pager]'),
       customPaging: function customPaging(slick, index) {
-        var imageSrc = slick.$slides[index].src;
-        return "\n<div class=\"relative\">\n  <svg xmlns=\"http://www.w3.org/2000/svg\" class=\"active-arrow absolute -top-6 left-2/4 -ml-3 text-orange h-6 w-6\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\">\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M5 15l7-7 7 7\" />\n  </svg>\n  <span class=\"inline-block border rounded cursor-pointer\"><img class=\"h-20 w-40 object-cover\" src=\"".concat(imageSrc, "\" alt=\"\" title=\"\"></span>\n</div>");
+        var targetImage = slick.$slides.eq(index).find('img').attr('src');
+        return "\n<div class=\"relative\">\n  <svg xmlns=\"http://www.w3.org/2000/svg\" class=\"active-arrow absolute -top-6 left-2/4 -ml-3 text-orange h-6 w-6\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\">\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M5 15l7-7 7 7\" />\n  </svg>\n  <span class=\"inline-block border rounded cursor-pointer\"><img class=\"h-20 w-40 object-cover\" src=\"" + targetImage + "\" alt=\"\" title=\"\"></span>\n</div>";
       }
     });
   });
