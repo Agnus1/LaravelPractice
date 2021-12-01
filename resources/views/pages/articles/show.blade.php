@@ -3,7 +3,7 @@
 @section('title', $article->title)
 
 @section('path')
-    <x-panels.navigation.paths.article/>
+    <x-panels.navigation.paths.article :article="$article"/>
 @endsection
 
 @section('info')

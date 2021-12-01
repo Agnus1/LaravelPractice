@@ -3,7 +3,7 @@
 @section('title', $car->name)
 
 @section('path' )
-<x-panels.navigation.paths.product :car='$car'/>
+    <x-panels.navigation.paths.car :car='$car'/>
 @endsection
 
 @section('content')

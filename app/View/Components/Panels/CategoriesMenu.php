@@ -20,7 +20,7 @@ class CategoriesMenu extends Component
     public function __construct(CategoriesRepositoryContract $categoriesRepository)
     {
         $this->categories = $categoriesRepository->getRoots();
-        $this->currentCategoryName = Route::getCurrentRoute()->category ? Route::getCurrentRoute()->category->name : '';
+        $this->currentCategoryName = Route::getCurrentRoute()->slug ?? '';
         $this->categoriesRepository = $categoriesRepository;
     }
 
