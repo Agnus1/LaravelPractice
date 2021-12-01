@@ -2,7 +2,7 @@
 @section('title', $category->name ?? 'Каталог')
 
 @section('path')
-    <x-panels.navigation.paths.cars :category='$category'/>
+    <x-panels.navigation.breadcrumbs name='cars' :params='$category'/>
 @endsection
 
 @section('content')

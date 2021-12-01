@@ -28,3 +28,9 @@ Breadcrumbs::for('article', function ($trail, $article) {
     $trail->parent('articles');
     $trail->push($article->title, route('articles.show', $article));
 });
+
+
+Breadcrumbs::for('about', function ($trail, $title) {
+    $trail->parent('home');
+    $trail->push($title, route('articles.index'));
+});
