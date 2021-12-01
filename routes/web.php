@@ -13,9 +13,11 @@ Route::get('/conditions', [PageController::class, 'conditions'])->name('conditio
 Route::get('/financial', [PageController::class, 'financial'])->name('financial');
 Route::get('/forclients', [\App\Http\Controllers\ForClientsController::class, 'forClients'])->name('forclients');
 Route::get('/salons', [PageController::class, 'salons'])->name('salons');
-
+Route::get('/account', [PageController::class, 'account'])->name('account');
 Route::resource('/articles', ArticlesPageController::class);
-//Route::resource('/catalog', CatalogPageController::class);
 
 Route::get('/products/{car}', [CatalogPageController::class, 'show'])->name('catalog.show');
 Route::get('/catalog/{slug}', [CatalogPageController::class, 'index'])->name('catalog.index');
+Auth::routes();
+
+

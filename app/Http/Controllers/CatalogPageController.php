@@ -17,6 +17,7 @@ class CatalogPageController extends Controller
                                 CategoriesRepositoryContract $categoryRepository
     )
     {
+        $this->middleware('auth');
         $this->carsRepository = $carsRepository;
         $this->categoryRepository = $categoryRepository;
     }

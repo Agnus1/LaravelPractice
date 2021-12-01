@@ -11,6 +11,7 @@ use App\Repositories\BannersRepositoryContract;
 
 class HomePageController extends Controller
 {
+
     public function homepage(
                              ArticlesRepositoryContract $articlesRepository,
                              CarsRepositoryContract     $carsRepository,

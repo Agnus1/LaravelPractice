@@ -23,6 +23,8 @@ class ArticlesPageController extends Controller
                                 ImagesSynchronizerContract $imagesSynchronizer,
     )
     {
+        $this->middleware('auth');
+        
         $this->articlesRepository = $repository;
         $this->tagsRepository = $tagRepository;
         $this->tagsSynchronizer = $tagsSynchronizer;
