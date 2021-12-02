@@ -2,16 +2,18 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\Car;
 use App\Models\Article;
 use App\Models\Banner;
-use App\Models\Cached;
+use App\Traits\HasCache;
 
-class Image extends Cached
+class Image extends Model
 {
     use HasFactory;
-
+    use HasCache;
+    
     public $guarded = [];
     
     public function cars()

@@ -2,19 +2,20 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Model;
 use App\Services\HasTags;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Traits\HasCache;
 use App\Models\Image;
 use App\Services\HasImages;
-use App\Models\Cached;
 use App\Events\ArticleCreated;
 use App\Events\ArticleDeleted;
 use App\Events\ArticleUpdated;
-use App\Events\CachedModelChanged;
 
-class Article extends Cached implements HasTags, HasImages
+class Article extends Model implements HasTags, HasImages
 {
     use HasFactory;
+    use HasCache;
 
     public $guarded = [];
 

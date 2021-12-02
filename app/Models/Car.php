@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use App\Models\Cached;
+use App\Traits\HasCache;
 
-class Car extends Cached
+class Car extends Model
 {
     use HasFactory;
-
+    use HasCache;
+    
     public $guarded = [];
 
     protected $casts = [

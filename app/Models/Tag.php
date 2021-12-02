@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use App\Models\Cached;
+use App\Traits\HasCache;
 
-class Tag extends Cached
+class Tag extends Model
 {
     use HasFactory;
-
+    use HasCache;
+    
     public function articles()
     {
         return $this->morphedByMany(Article::class, 'taggable');

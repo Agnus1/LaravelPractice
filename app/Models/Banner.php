@@ -5,11 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Image;
-use App\Models\Cached;
+use App\Traits\HasCache;
 
-class Banner extends Cached
+class Banner extends Model
 {
     use HasFactory;
+    use HasCache;
     
     public function image()
     {

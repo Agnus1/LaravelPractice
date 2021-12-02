@@ -26,9 +26,6 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-        CachedModelChanged::class => [
-            ClearRelatedCache::class,
-        ],
         ArticleCreated::class => [
             SendArticleCreatedMail::class,
         ],
