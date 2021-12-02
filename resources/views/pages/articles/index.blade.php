@@ -8,9 +8,11 @@
 
 @section('info')
     <div class="space-y-4">
-        <a class="inline-flex items-center text-orange hover:opacity-75" href="{{route('articles.create')}}">
-            Создать статью
-        </a>
+        @admin
+            <a class="inline-flex items-center text-orange hover:opacity-75" href="{{route('articles.create')}}">
+                Создать статью
+            </a>
+        @endadmin
         @each('components.panels.articlesItem',$articles, 'article')
         <div>
             {{$articles->onEachSide(1)->links()}}

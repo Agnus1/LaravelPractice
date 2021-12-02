@@ -22,7 +22,9 @@
             К списку новостей
         </a>
     </div>
+    @admin
     <a class="inline-flex items-center text-orange hover:opacity-75" href="{{route('articles.edit', $article)}}">
         Редактировать статью
     </a>
+    @endadmin
 @endsection

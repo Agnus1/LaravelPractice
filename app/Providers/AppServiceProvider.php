@@ -29,5 +29,9 @@ class AppServiceProvider extends ServiceProvider
         setlocale(LC_TIME, 'rus.UTF-8');
         Carbon::setLocale(config('app.locale'));
         Paginator::defaultView('pagination::default');
+
+        \Blade::if('admin', function() {
+            return auth()->user()->roles->contains('name', 'admin');
+        });
     }
 }
