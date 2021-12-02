@@ -19,7 +19,7 @@ class ArticlePolicy
     public function create(User $user)
     {
 
-        return $user->roles->contains('name', 'admin');
+         return $user->isAdmin();
     }
 
     /**
@@ -31,19 +31,6 @@ class ArticlePolicy
      */
     public function update(User $user, Article $article)
     {
-        return $user->roles->contains('name', 'admin');
+        return $user->isAdmin();
     }
-
-    /**
-     * Determine whether the user can delete the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Article  $article
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function delete(User $user, Article $article)
-    {
-        return $user->roles->contains('name', 'admin');
-    }
-
 }
