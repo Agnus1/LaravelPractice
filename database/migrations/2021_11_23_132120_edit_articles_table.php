@@ -14,7 +14,7 @@ class EditArticlesTable extends Migration
     public function up()
     {
         Schema::table('articles', function(Blueprint $table){
-            $table->foreignId('image_id')->nullable(true)->constrained();
+            $table->foreignId('image_id')->required()->constrained();
         });
     }
 

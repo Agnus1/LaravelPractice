@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use App\Models\Cached;
 
-class Car extends Model
+class Car extends Cached
 {
     use HasFactory;
 
@@ -14,19 +14,6 @@ class Car extends Model
     protected $casts = [
         'year' => 'date: d M Y'
     ];
-
-    public static function booted()
-    {
-        static::created(function () {
-            \Cache::tags(['cars'])->flush();
-        });
-        static::updated(function () {
-            \Cache::tags(['cars'])->flush();
-        });
-        static::deleted(function () {
-            \Cache::tags(['cars'])->flush();
-        });
-    }
     
     public function carClass()
     {
@@ -55,5 +42,10 @@ class Car extends Model
     public function images_pivot()
     {
         return $this->belongsToMany(Image::class, 'car_image', 'car_id', 'image_id');
+    }
+
+    public function getCacheTags() : string
+    {
+        return 'cars';
     }
 }

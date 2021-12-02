@@ -3,29 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use App\Models\Car;
 use App\Models\Article;
 use App\Models\Banner;
+use App\Models\Cached;
 
-class Image extends Model
+class Image extends Cached
 {
     use HasFactory;
 
     public $guarded = [];
-      
-    public static function booted()
-    {
-        static::created(function () {
-            \Cache::tags(['images'])->flush();
-        });
-        static::updated(function () {
-            \Cache::tags(['images'])->flush();
-        });
-        static::deleted(function () {
-            \Cache::tags(['images'])->flush();
-        });
-    }
     
     public function cars()
     {
@@ -45,5 +32,10 @@ class Image extends Model
     public function banners()
     {
         return $this->hasMany(Banner::class);
+    }
+
+    public function getCacheTags() : string
+    {
+        return 'images';
     }
 }
