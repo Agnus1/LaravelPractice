@@ -27,6 +27,7 @@ class SendArticleUpdatedMail
      */
     public function handle(ArticleUpdated $event)
     {
+        $email = config('mail.admin') ?? 'admin@example.com';
         \Mail::to(config('mail.admin'))->send(new Mail($event->article));
     }
 }
