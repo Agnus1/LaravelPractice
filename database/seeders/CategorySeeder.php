@@ -16,6 +16,7 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
+
         $categories = collect([
             'Легковые',
             'Внедорожники',
@@ -23,7 +24,11 @@ class CategorySeeder extends Seeder
             'Распродажа',
             'Новинки',
         ]);
-        $subCategories = collect([
+
+        /* 
+        *  Название категории - id родителя
+        */
+        $subcategories = collect([
             ['Седаны', 1],
             ['Хетчбеки', 1],
             ['Универсалы', 1],
@@ -33,33 +38,33 @@ class CategorySeeder extends Seeder
             ['Пикапы', 2],
             ['Кроссоверы', 2],
         ]);
-        
+
+
         Category::factory()->count($categories->count())
-                ->state(new Sequence(
-                    function ($sequence) use ($categories) {
-                            $name = $categories->get($sequence->index);
-                            $attributes = [
-                                'name' => $name,
-                                'sort' => $sequence->index,
-                                'slug' => Str::slug($name),
-                            ]; 
-                        return $attributes;
-                }))->create();
-                
-        Category::factory()->count($subCategories->count())
-                ->state(new Sequence(
-                    function ($sequence) use ($subCategories) {
-                        $subCategory = $subCategories->pull($sequence->index);
-                        $name = $subCategory[0];
-                        $parentId = $subCategory[1];
-                        $attributes = [
-                            'name' => $name,
-                            'sort' => $sequence->index,
-                            'parent_id' => $parentId,
-                            'slug' => Str::slug($name),
-                        ];
-                        return $attributes;
-                    }
-                ))->create();
+            ->state(new Sequence(
+                function ($sequence) use ($categories) {
+                    $name = $categories->pull($sequence->index);
+                    $attributes = [
+                        'name' => $name,
+                        'sort' => $sequence->index + 1,
+                        'slug' => Str::slug($name),
+                    ]; 
+                    return $attributes;
+            }))->create();
+
+        Category::factory()->count($subcategories->count())
+            ->state(new Sequence(
+                function ($sequence) use ($subcategories) {
+                    $category = $subcategories->pull($sequence->index);
+                    $name = $category[0];
+                    $parentId = $category[1];
+                    $attributes = [
+                        'name' => $name,
+                        'sort' => $sequence->index + 1,
+                        'parent_id' => $parentId,
+                        'slug' => Str::slug($name),
+                    ]; 
+                    return $attributes;
+            }))->create();
     }
 }

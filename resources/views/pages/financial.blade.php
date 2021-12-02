@@ -3,7 +3,7 @@
 @section('title', 'Финансовый отдел')
 
 @section('path')
-    <x-panels.navigation.paths.foot/>
+    <x-panels.navigation.breadcrumbs name="about" params="Финансовый отдел"/>
 @endsection
 
 @section('info')

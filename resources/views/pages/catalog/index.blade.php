@@ -1,13 +1,13 @@
 @extends('layouts.app')
-@section('title', $category->name)
+@section('title', $category->name ?? 'Каталог')
 
 @section('path')
-    <x-panels.navigation.paths.catalog :category='$category'/>
+    <x-panels.navigation.breadcrumbs name='cars' :params='$category'/>
 @endsection
 
 @section('content')
     <div class="p-4">
-            <h1 class="text-black text-3xl font-bold mb-4">{{$category->name}}</h1>
+            <h1 class="text-black text-3xl font-bold mb-4">{{$category->name ?? 'Каталог'}}</h1>
             <x-panels.models :cars="$cars"/>
 
             <div class="text-center mt-4">

@@ -3,7 +3,7 @@
 @section('title', 'О нас')
 
 @section('path')
-    <x-panels.navigation.paths.foot/>
+    <x-panels.navigation.breadcrumbs name="about" params="О нас"/>
 @endsection
 
 @section('info')

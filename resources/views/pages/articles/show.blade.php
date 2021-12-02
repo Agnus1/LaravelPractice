@@ -3,7 +3,7 @@
 @section('title', $article->title)
 
 @section('path')
-    <x-panels.navigation.paths.article/>
+    <x-panels.navigation.breadcrumbs name='article' :params='$article'/>
 @endsection
 
 @section('info')
