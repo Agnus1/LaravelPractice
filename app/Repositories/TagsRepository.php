@@ -28,11 +28,9 @@ class TagsRepository implements TagsRepositoryContract
 
     public function getAverageArticlesCount() : float
     {
-        return \DB::table(function ($query) {
-            $query->selectRaw('COUNT(*) as amount')
-                  ->from('tags')
-                  ->rightJoin('taggables', 'tags.id', '=', 'taggables.tag_id')
-                  ->groupBy('id');
-        })->avg('amount');;
+        return Tag::whereHas('articles')
+                    ->withCount('articles')
+                    ->get()
+                    ->avg('articles_count');
     }
 }
