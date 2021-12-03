@@ -21,8 +21,6 @@ class TagsRepository implements TagsRepositoryContract
     {
         return Tag::withCount('articles')
                     ->orderByDesc('articles_count')
-                    ->limit(1)
-                    ->get()
                     ->first();
     }
 

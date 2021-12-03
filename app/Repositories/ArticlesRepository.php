@@ -97,8 +97,6 @@ class ArticlesRepository implements ArticlesRepositoryContract
     public function getOrderByBody(string $direction = 'desc') : Article
     {
         return Article::orderByRaw("LENGTH(`body`) {$direction}")
-                        ->limit(1)
-                        ->get()
                         ->first();
     }
 
@@ -108,7 +106,6 @@ class ArticlesRepository implements ArticlesRepositoryContract
                         ->withCount('tags')
                         ->with('tags')
                         ->orderBy('tags_count', 'desc')
-                        ->get()
                         ->first();
     }
 }
