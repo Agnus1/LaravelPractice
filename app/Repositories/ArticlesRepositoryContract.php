@@ -15,4 +15,6 @@ interface ArticlesRepositoryContract
     public function findBySlug(string $slug) : Article;
     public function delete(string $slug);
     public function update(string $slug, array $values) : Article;
+    public function make(array $attributes) : Article;
+    public function save(Article $article);
 }

@@ -16,6 +16,17 @@ class ArticlesRepository implements ArticlesRepositoryContract
         return Article::create($attributes);
     }
 
+    public function save(Article $article)
+    {
+        $article->save();
+    }
+
+    public function make(array $attributes) : Article
+    {
+        return Article::make($attributes);
+    }
+
+
     public function paginate(int $count, $page) : LengthAwarePaginator
     {
         $paginate = \Cache::tags($this->cacheTags)->remember(

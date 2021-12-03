@@ -17,10 +17,9 @@ class TagsSynchronizer implements TagsSynchronizerContract
     public function sync(Collection $tags, HasTags $model)
     {
         if ($tags->isEmpty()) {
-            $model->tags()->sync([]);
+            $model->tags()->detach();;
             return;
         }
-
         $this->tagsRepository->upsert($tags->get('tags'), ['name']);
         $tagNames = Arr::pluck($tags->get('tags'), 'name');
         $tagsId = $this->tagsRepository->getByNames($tagNames)->pluck('id');

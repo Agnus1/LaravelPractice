@@ -2,31 +2,20 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Traits\HasCache;
 
 class Car extends Model
 {
     use HasFactory;
-
+    use HasCache;
+    
     public $guarded = [];
 
     protected $casts = [
         'year' => 'date: d M Y'
     ];
-
-    public static function booted()
-    {
-        static::created(function () {
-            \Cache::tags(['cars'])->flush();
-        });
-        static::updated(function () {
-            \Cache::tags(['cars'])->flush();
-        });
-        static::deleted(function () {
-            \Cache::tags(['cars'])->flush();
-        });
-    }
     
     public function carClass()
     {
@@ -55,5 +44,10 @@ class Car extends Model
     public function images_pivot()
     {
         return $this->belongsToMany(Image::class, 'car_image', 'car_id', 'image_id');
+    }
+
+    public function getCacheTags() : string
+    {
+        return 'cars';
     }
 }

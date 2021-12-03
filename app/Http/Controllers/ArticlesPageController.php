@@ -13,12 +13,10 @@ use App\Services\ImagesSynchronizerContract;
 class ArticlesPageController extends Controller
 {
     private $articlesRepository;
-    private $tagsRepository;
     private $tagsSynchronizer;
     private $imagesSynchronizer;
     
     public function __construct(ArticlesRepositoryContract $repository,
-                                TagsRepositoryContract $tagRepository,
                                 TagsSynchronizerContract $tagsSynchronizer,
                                 ImagesSynchronizerContract $imagesSynchronizer,
     )
@@ -26,7 +24,6 @@ class ArticlesPageController extends Controller
         $this->middleware('auth');
         
         $this->articlesRepository = $repository;
-        $this->tagsRepository = $tagRepository;
         $this->tagsSynchronizer = $tagsSynchronizer;
         $this->imagesSynchronizer = $imagesSynchronizer;
     }
@@ -55,13 +52,15 @@ class ArticlesPageController extends Controller
     )
     {
         $attributes = $request->validated();
-        $imageAttributes = $imageRequest->safe()->collect();
         $tags = $tagRequest->safe()->collect();
-        
-        $article = $this->articlesRepository->create($attributes);
-        $this->tagsSynchronizer->sync($tags, $article);
+        $imageAttributes = $imageRequest->safe()->collect();
+
+        $article = $this->articlesRepository->make($attributes);
+
         $this->imagesSynchronizer->sync($imageAttributes, $article);
-        
+        $this->articlesRepository->save($article);
+        $this->tagsSynchronizer->sync($tags, $article);
+
         return redirect()->route('articles.index');
     }
 
@@ -78,9 +77,9 @@ class ArticlesPageController extends Controller
     )
     {
         $attributes = $request->validated();
-        $imageAttributes = $imageRequest->safe()->collect();
         $tags = $tagRequest->safe()->collect();
-        
+        $imageAttributes = $imageRequest->safe()->collect();
+
         $article = $this->articlesRepository->update($slug, $attributes);
         $this->tagsSynchronizer->sync($tags, $article);
         $this->imagesSynchronizer->sync($imageAttributes, $article);

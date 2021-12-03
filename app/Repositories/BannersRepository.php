@@ -7,12 +7,12 @@ use App\Models\Banner;
 
 class BannersRepository implements BannersRepositoryContract
 {
-    private $cacheTags = 'banners';
+    private $cacheTags = ['banners', 'images'];
     
     public function getRandom(int $count): Collection
     {
-        $banners = \Cache::tags([$this->cacheTags])->remember(
-            $this->cacheTags . '.getRandom.' . $count, 
+        $banners = \Cache::tags($this->cacheTags)->remember(
+            'banners.getRandom.' . $count, 
             now()->addMinutes(60), 
             function () use ($count) {
                 return Banner::inRandomOrder()
