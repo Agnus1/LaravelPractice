@@ -31,7 +31,10 @@ class AppServiceProvider extends ServiceProvider
         Paginator::defaultView('pagination::default');
 
         \Blade::if('admin', function() {
-            return auth()->user()->isAdmin();
+            if (auth()->check()) {
+                return auth()->user()->isAdmin();
+            }
+            return false;
         });
     }
 }
