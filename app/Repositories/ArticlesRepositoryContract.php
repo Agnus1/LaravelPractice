@@ -17,4 +17,7 @@ interface ArticlesRepositoryContract
     public function update(string $slug, array $values) : Article;
     public function make(array $attributes) : Article;
     public function save(Article $article);
+    public function getCount() : int;
+    public function getOrderByBody(string $direction = 'desc') : Article;
+    public function getMostTaged() : Article;
 }

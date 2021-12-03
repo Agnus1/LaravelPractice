@@ -19,6 +19,8 @@ use App\Repositories\BannersRepository;
 use App\Repositories\BannersRepositoryContract;
 use App\Services\ImagesSynchronizerContract;
 use App\Services\ImagesSynchronizer;
+use App\Services\StatisticsCollectorContract;
+use App\Services\StatisticsCollector;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -47,5 +49,6 @@ class RepositoryServiceProvider extends ServiceProvider
         app()->singleton(CategoriesRepositoryContract::class, CategoriesRepository::class);
         app()->singleton(ImagesRepositoryContract::class, ImagesRepository::class);
         app()->singleton(BannersRepositoryContract::class, BannersRepository::class);
+        app()->singleton(StatisticsCollectorContract::class, StatisticsCollector::class);
     }
 }

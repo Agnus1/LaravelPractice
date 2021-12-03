@@ -16,4 +16,23 @@ class TagsRepository implements TagsRepositoryContract
     {
         return Tag::query()->whereIn('name', $values)->get();
     }
+
+    public function getMostUsefulTag() : Tag
+    {
+        return Tag::withCount('articles')
+                    ->orderByDesc('articles_count')
+                    ->limit(1)
+                    ->get()
+                    ->first();
+    }
+
+    public function getAverageArticlesCount() : float
+    {
+        return \DB::table(function ($query) {
+            $query->selectRaw('COUNT(*) as amount')
+                  ->from('tags')
+                  ->rightJoin('taggables', 'tags.id', '=', 'taggables.tag_id')
+                  ->groupBy('id');
+        })->avg('amount');;
+    }
 }
