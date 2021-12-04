@@ -16,6 +16,18 @@ class ArticlesRepository implements ArticlesRepositoryContract
         return Article::create($attributes);
     }
 
+    public function delete(string $slug)
+    {
+        $this->findBySlug($slug)->delete();
+    }
+
+    public function update(string $slug, array $values) : Article
+    {
+        $model = $this->findBySlug($slug);
+        $model->update($values);
+        return $model;
+    }
+    
     public function save(Article $article)
     {
         $article->save();
@@ -75,18 +87,6 @@ class ArticlesRepository implements ArticlesRepositoryContract
                                 ->first();
             });
         return $article;
-    }
-    
-    public function delete(string $slug)
-    {
-        $this->findBySlug($slug)->delete();
-    }
-
-    public function update(string $slug, array $values) : Article
-    {
-        $model = $this->findBySlug($slug);
-        $model->update($values);
-        return $model;
     }
 
     public function getCount() : int

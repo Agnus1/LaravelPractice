@@ -14,8 +14,10 @@ class EditCarsTable extends Migration
     public function up()
     {
         Schema::table('cars', function(Blueprint $table){
-            $table->foreignId('category_id')->constrained();
-            $table->foreignId('image_id')->nullable(true)->constrained();
+            $table->foreignId('category_id')->nullable()->constrained();
+            $table->foreignId('image_id')->nullable()->constrained();
+            $table->string('salon', 50)->nullable()->change();
+            $table->dateTime('year')->nullable()->change();
         });
     }
 
