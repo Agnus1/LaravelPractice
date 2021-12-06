@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Services\SalonsClientService;
+use App\Services\SalonsClientServiceContract;
 use Illuminate\Support\Collection;
 
 class SalonsRepository implements SalonsRepositoryContract
@@ -11,7 +11,7 @@ class SalonsRepository implements SalonsRepositoryContract
     private $salonsService;
     private $cacheTags = 'salons';
 
-    public function __construct(SalonsClientService $salonsService)
+    public function __construct(SalonsClientServiceContract $salonsService)
     {
         $this->salonsService = $salonsService;
     }

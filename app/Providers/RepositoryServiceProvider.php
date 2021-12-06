@@ -23,6 +23,7 @@ use App\Services\ImagesSynchronizerContract;
 use App\Services\ImagesSynchronizer;
 use App\Services\StatisticsCollectorContract;
 use App\Services\StatisticsCollector;
+use App\Services\SalonsClientServiceContract;
 use App\Services\SalonsClientService;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -50,7 +51,7 @@ class RepositoryServiceProvider extends ServiceProvider
         app()->singleton(TagsSynchronizerContract::class, TagsSynchronizer::class);
         app()->singleton(ImagesSynchronizerContract::class, ImagesSynchronizer::class);
         app()->singleton(CategoriesRepositoryContract::class, CategoriesRepository::class);
-        app()->singleton(SalonsClientService::class, function () {
+        app()->singleton(SalonsClientServiceContract::class, function () {
             return new SalonsClientService(config('salons.login'), config('salons.password'));
         });
         app()->singleton(ImagesRepositoryContract::class, ImagesRepository::class);

@@ -4,7 +4,7 @@
         <span class="inline-block pl-1"> / <a href="{{route('salons')}}" class="inline-block pl-1 text-gray-600 hover:text-orange"><b>Все</b></a></span>
     </div>
     <div class="grid gap-6 grid-cols-1 lg:grid-cols-2">
-        @foreach($salons as $salon)
+        @forelse($salons as $salon)
             <div class="w-full flex">
                 <div class="h-48 lg:h-auto w-32 xl:w-48 flex-none text-center rounded-lg overflow-hidden">
                     <a class="block w-full h-full hover:opacity-75" href="{{route('salons')}}"><img src="{{$salon['image']}}" class="w-full h-full object-cover" alt=""></a>
@@ -22,6 +22,10 @@
                     </div>
                 </div>
             </div>
-        @endforeach
+        @empty
+            <div class="w-full flex">
+                <p class="text-black">Салоны временно недоступны</p>
+            </div>
+        @endforelse
     </div>
 </div>

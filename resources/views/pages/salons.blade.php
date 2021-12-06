@@ -4,7 +4,7 @@
 
 @section('info')
     <div class="space-y-4 max-w-4xl">
-        @foreach ($salons as $salon)
+        @forelse ($salons as $salon)
             @if ($loop->odd)
             <div class="w-full flex p-4">
                 <div class="h-48 lg:h-auto w-32 xl:w-48 flex-none text-center rounded-lg overflow-hidden">
@@ -38,7 +38,11 @@
                 </div>
             </div>
             @endif
-        @endforeach
+        @empty
+            <div class="w-full flex">
+                <p class="text-black">Салоны временно недоступны</p>
+            </div>
+        @endforelse
     </div>
 
     <div class="my-4 space-y-4 max-w-4xl">
