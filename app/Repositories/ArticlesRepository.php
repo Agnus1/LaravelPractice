@@ -88,4 +88,24 @@ class ArticlesRepository implements ArticlesRepositoryContract
         $model->update($values);
         return $model;
     }
+
+    public function getCount() : int
+    {
+        return Article::count();
+    }
+
+    public function getOrderByBody(string $direction = 'desc') : Article
+    {
+        return Article::orderByRaw("LENGTH(`body`) {$direction}")
+                        ->first();
+    }
+
+    public function getMostTaged() : Article
+    {
+        return Article::whereHas('tags')
+                        ->withCount('tags')
+                        ->with('tags')
+                        ->orderBy('tags_count', 'desc')
+                        ->first();
+    }
 }

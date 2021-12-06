@@ -55,4 +55,9 @@ class CarsRepository implements CarsRepositoryContract
             
         return $section;
     }
+
+    public function getCount() : int
+    {
+        return Car::count();
+    }
 }
