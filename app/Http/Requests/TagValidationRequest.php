@@ -39,7 +39,8 @@ class TagValidationRequest extends FormRequest
         $tagsArray = Str::of(request('tags'))
             ->replace(' ', '')
             ->trim(',')
-            ->explode(',')->map(function ($item, $key) {
+            ->explode(',')
+            ->map(function ($item, $key) {
                 return ['name' => $item];
             })->toArray();
 

@@ -10,6 +10,36 @@ class CarsRepository implements CarsRepositoryContract
 {
     private $cacheTags = ['cars', 'images', 'categories'];
     
+    public function create(array $attributes) : Car
+    {
+        return Car::create($attributes);
+    }
+
+    public function delete(int $id)
+    {
+        $car = Car::find($id);
+        if (is_null($car)) {
+            throw new \Exception('Model not found');
+        }
+        return Car::find($id)->delete();
+    }
+
+    public function update(int $id, array $values) : Car
+    {
+        $car = Car::find($id);
+        if (is_null($car)) {
+            throw new \Exception('Model not found');
+        }
+        $car->update($values);
+        return $car;
+    }
+
+    public function get() : Collection
+    {
+        return Car::get();
+    }
+
+
     public function getById(int $id) : Car
     {
         $car = \Cache::tags($this->cacheTags)->remember(
