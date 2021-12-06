@@ -15,12 +15,12 @@ class HomePageController extends Controller
     public function homepage(
                              ArticlesRepositoryContract $articlesRepository,
                              CarsRepositoryContract     $carsRepository,
-                             BannersRepositoryContract  $bannersRepository,
+                             BannersRepositoryContract  $bannersRepository
     )
     {
         $articles = $articlesRepository->getLatest(3);
         $cars = $carsRepository->getNew(4);
         $banners = $bannersRepository->getRandom(3);
-        return view('pages.homepage', ['articles' => $articles, 'cars' => $cars, 'banners' => $banners]);
+        return view('pages.homepage', compact('articles', 'cars', 'banners'));
     }
 }

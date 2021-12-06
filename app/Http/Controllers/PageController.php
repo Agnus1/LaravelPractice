@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Repositories\SalonsRepositoryContract;
 
 class PageController extends Controller
 {
@@ -28,9 +29,10 @@ class PageController extends Controller
         return view('pages.financial');
     }
 
-    public function salons()
+    public function salons(SalonsRepositoryContract $salonsRepository)
     {
-        return view('pages.salons');
+        $salons = $salonsRepository->get();
+        return view('pages.salons', compact('salons'));
     }
     
     public function account()
