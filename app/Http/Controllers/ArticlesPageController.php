@@ -43,6 +43,9 @@ class ArticlesPageController extends Controller
 
     public function create()
     {
+        if (auth()->user()->cant('create', \App\Models\Article::class)) {
+            return back();
+        }
         return view('pages.articles.create');
     }
 
@@ -51,6 +54,10 @@ class ArticlesPageController extends Controller
                           ImageValidationRequest $imageRequest
     )
     {
+        if (auth()->user()->cant('create', \App\Models\Article::class)) {
+            return back();
+        }
+
         $attributes = $request->validated();
         $tags = $tagRequest->safe()->collect();
         $imageAttributes = $imageRequest->safe()->collect();
@@ -67,6 +74,11 @@ class ArticlesPageController extends Controller
     public function edit(string $slug)
     {
         $article = $this->articlesRepository->findBySlug($slug);
+
+        if (auth()->user()->cant('update', $article)) {
+            return back();
+        }
+
         return view('pages.articles.edit', ['article' => $article]);
     }
 
