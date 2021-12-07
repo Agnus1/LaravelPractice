@@ -7,5 +7,5 @@ use Illuminate\Support\Collection;
 interface SalonsRepositoryContract
 {
 	public function get() : Collection;
-	public function getTwoRandom() : Collection;
+	public function getRandom(int $count) : Collection;
 }

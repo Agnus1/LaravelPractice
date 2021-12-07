@@ -16,7 +16,7 @@ class FooterSalons extends Component
      */
     public function __construct(SalonsRepositoryContract $salonsRepository)
     {
-        $this->salons = $salonsRepository->getTwoRandom();
+        $this->salons = $salonsRepository->getRandom(2);
 
     }
 

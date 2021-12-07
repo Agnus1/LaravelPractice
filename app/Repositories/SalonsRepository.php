@@ -27,13 +27,13 @@ class SalonsRepository implements SalonsRepositoryContract
         return $salons;
     }
 
-    public function getTwoRandom() : Collection
+    public function getRandom(int $count) : Collection
     {
         $salons = \Cache::tags($this->cacheTags)->remember(
-                    'salons.getTwoRandom', 
+                    'salons.getRandom.' . $count, 
                     now()->addMinutes(5), 
-                    function () {
-                        return $this->salonsService->getTwoRandom();
+                    function () use ($count) {
+                        return $this->salonsService->getRandom($count);
                     });
         return $salons;
     }
