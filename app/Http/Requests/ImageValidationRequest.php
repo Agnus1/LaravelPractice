@@ -32,7 +32,8 @@ class ImageValidationRequest extends FormRequest
             ],
             'image' => [
                 Rule::requiredIf(is_null($this->article)),
-                'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'image',
+                'max:2048',
             ]
         ];
     }

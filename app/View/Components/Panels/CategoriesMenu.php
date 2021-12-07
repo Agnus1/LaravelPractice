@@ -11,7 +11,6 @@ class CategoriesMenu extends Component
     public $categories;
     public $descendants;
     public $currentCategoryName;
-    public $categoriesRepository;
     /**
      * Create a new component instance.
      *
@@ -21,7 +20,6 @@ class CategoriesMenu extends Component
     {
         $this->categories = $categoriesRepository->getRoots();
         $this->currentCategoryName = Route::getCurrentRoute()->slug ?? '';
-        $this->categoriesRepository = $categoriesRepository;
     }
 
     /**
