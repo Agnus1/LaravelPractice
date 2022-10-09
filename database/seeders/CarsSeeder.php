@@ -26,9 +26,9 @@ class CarsSeeder extends Seeder
         $bodies = CarBody::get();
         $categories = Category::get();
         $images = Image::get();
-        
+
         $cars = Car::factory()
-            ->count(20)
+            ->count(7)
             ->state(new Sequence(
                 function ($sequence) use ($engines, $classes, $bodies, $categories, $images) {
                     $doSeed = $sequence->index < 5;

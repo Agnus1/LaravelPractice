@@ -5,7 +5,7 @@
     <x-panels.styles/>
     <script src="{{mix('/js/app.js')}}"></script>
 </head>
-<body class="bg-white text-gray-600 font-sans leading-normal text-base tracking-normal flex min-h-screen flex-col">
+<body class="bg-white text-gray-600 font-sans leading-normal text-base tracking-normal flex min-h-screen flex-col p-5">
     <div class="wrapper flex flex-1 flex-col">
         <title>Рога и Сила - @yield('title')</title>
         <link href="/assets/favicon.ico" rel="shortcut icon" type="image/x-icon">
